@@ -1,0 +1,205 @@
+{
+    "swagger": "2.0",
+    "host": "localhost:8080",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "info": {
+        "title": "Recipecate API Documentation",
+        "version": "0.0.1"
+    },
+    "tags": [],
+    "paths": {
+        "/recipes": {
+            "get": {
+                "operationId": "getRecipes",
+                "tags": [
+                    "recipes"
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/recipePageResponse"
+                        },
+                        "description": "Successful"
+                    }
+                }
+            }
+        },
+        "/recipes/{id}/detail": {
+            "get": {
+                "operationId": "getRecipesIdDetail",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "recipes"
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/recipe"
+                        },
+                        "description": "Successful"
+                    }
+                }
+            }
+        },
+        "/recipes/add": {
+            "post": {
+                "operationId": "postRecipesAdd",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/recipeRequest"
+                        }
+                    }
+                ],
+                "tags": [
+                    "recipes"
+                ],
+                "responses": {
+                    "default": {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Successful"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Model 1": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "items": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Model 1"
+            }
+        },
+        "recipePageResponse": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "items": {
+                    "$ref": "#/definitions/items"
+                }
+            }
+        },
+        "ingredient": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "unit_of_measurement": {
+                    "type": "string"
+                }
+            }
+        },
+        "ingredients": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/ingredient"
+            }
+        },
+        "recipe": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "instructions": {
+                    "type": "string"
+                },
+                "ingredients": {
+                    "$ref": "#/definitions/ingredients"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "ingredientRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "number",
+                    "x-constraint": {
+                        "positive": true
+                    }
+                },
+                "unit_of_measurement": {
+                    "type": "string",
+                    "x-convert": {
+                        "lowercase": true
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "amount",
+                "unit_of_measurement"
+            ]
+        },
+        "Model 2": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/definitions/ingredientRequest"
+            }
+        },
+        "recipeRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "maxLength": 200
+                },
+                "instructions": {
+                    "type": "string",
+                    "maxLength": 1000
+                },
+                "ingredients": {
+                    "$ref": "#/definitions/Model 2"
+                }
+            },
+            "required": [
+                "name",
+                "ingredients"
+            ]
+        }
+    }
+}
