@@ -7,6 +7,9 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { RecipePageResponse } from '../models/recipe-page-response';
+import { Recipe } from '../models/recipe';
+import { RecipeRequest } from '../models/recipe-request';
 @Injectable({
   providedIn: 'root',
 })
@@ -21,7 +24,7 @@ class RecipesService extends __BaseService {
   /**
    * @return Successful
    */
-  getRecipesResponse(): __Observable<__StrictHttpResponse<Array<{id?: number, name?: string}>>> {
+  getRecipesResponse(): __Observable<__StrictHttpResponse<RecipePageResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -38,16 +41,16 @@ class RecipesService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<{id?: number, name?: string}>>;
+        return _r as __StrictHttpResponse<RecipePageResponse>;
       })
     );
   }
   /**
    * @return Successful
    */
-  getRecipes(): __Observable<Array<{id?: number, name?: string}>> {
+  getRecipes(): __Observable<RecipePageResponse> {
     return this.getRecipesResponse().pipe(
-      __map(_r => _r.body as Array<{id?: number, name?: string}>)
+      __map(_r => _r.body as RecipePageResponse)
     );
   }
 
@@ -55,14 +58,14 @@ class RecipesService extends __BaseService {
    * @param id undefined
    * @return Successful
    */
-  getRecipesIdResponse(id: number): __Observable<__StrictHttpResponse<{id: number, name?: string, instructions?: string, ingredients?: Array<{id?: number, name?: string, amount?: number, unit_of_measurement?: string}>}>> {
+  getRecipesIdDetailResponse(id: number): __Observable<__StrictHttpResponse<Recipe>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/recipes/${id}`,
+      this.rootUrl + `/recipes/${id}/detail`,
       __body,
       {
         headers: __headers,
@@ -73,7 +76,7 @@ class RecipesService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{id: number, name?: string, instructions?: string, ingredients?: Array<{id?: number, name?: string, amount?: number, unit_of_measurement?: string}>}>;
+        return _r as __StrictHttpResponse<Recipe>;
       })
     );
   }
@@ -81,16 +84,16 @@ class RecipesService extends __BaseService {
    * @param id undefined
    * @return Successful
    */
-  getRecipesId(id: number): __Observable<{id: number, name?: string, instructions?: string, ingredients?: Array<{id?: number, name?: string, amount?: number, unit_of_measurement?: string}>}> {
-    return this.getRecipesIdResponse(id).pipe(
-      __map(_r => _r.body as {id: number, name?: string, instructions?: string, ingredients?: Array<{id?: number, name?: string, amount?: number, unit_of_measurement?: string}>})
+  getRecipesIdDetail(id: number): __Observable<Recipe> {
+    return this.getRecipesIdDetailResponse(id).pipe(
+      __map(_r => _r.body as Recipe)
     );
   }
 
   /**
    * @param body undefined
    */
-  postRecipesAddResponse(body?: {name: string, instructions?: string, ingredients: Array<{name: string, amount: number, unit_of_measurement: string}>}): __Observable<__StrictHttpResponse<null>> {
+  postRecipesAddResponse(body?: RecipeRequest): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -115,7 +118,7 @@ class RecipesService extends __BaseService {
   /**
    * @param body undefined
    */
-  postRecipesAdd(body?: {name: string, instructions?: string, ingredients: Array<{name: string, amount: number, unit_of_measurement: string}>}): __Observable<null> {
+  postRecipesAdd(body?: RecipeRequest): __Observable<null> {
     return this.postRecipesAddResponse(body).pipe(
       __map(_r => _r.body as null)
     );

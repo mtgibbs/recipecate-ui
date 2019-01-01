@@ -78,7 +78,7 @@
         }
     },
     "definitions": {
-        "Model 1": {
+        "recipeListItem": {
             "type": "object",
             "properties": {
                 "id": {
@@ -92,7 +92,7 @@
         "items": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/Model 1"
+                "$ref": "#/definitions/recipeListItem"
             }
         },
         "recipePageResponse": {
@@ -174,7 +174,7 @@
                 "unit_of_measurement"
             ]
         },
-        "Model 2": {
+        "ingredientsRequest": {
             "type": "array",
             "minItems": 1,
             "items": {
@@ -193,7 +193,7 @@
                     "maxLength": 1000
                 },
                 "ingredients": {
-                    "$ref": "#/definitions/Model 2"
+                    "$ref": "#/definitions/ingredientsRequest"
                 }
             },
             "required": [
