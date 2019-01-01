@@ -10,14 +10,8 @@ import { RecipeListItem } from 'src/app/api/models';
 })
 export class RecipeDetailPageComponent implements OnInit {
 
-  private _recipes: RecipeListItem[];
-
   constructor(
     private route: ActivatedRoute) {
-
-    this.route.data.subscribe(r => {
-      this._recipes = r.items;
-    });
 
   }
 
