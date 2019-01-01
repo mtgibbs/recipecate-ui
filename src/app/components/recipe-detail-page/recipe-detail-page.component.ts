@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { RecipeListItem } from 'src/app/api/models';
 
 @Component({
   selector: 'app-recipe-detail-page',
@@ -9,15 +10,13 @@ import { map } from 'rxjs/operators';
 })
 export class RecipeDetailPageComponent implements OnInit {
 
-  private _recipes: [];
+  private _recipes: RecipeListItem[];
 
   constructor(
     private route: ActivatedRoute) {
 
-    this.route.data.pipe(
-      map(data => data.recipes)
-    ).subscribe(recipes => {
-      this._recipes = recipes;
+    this.route.data.subscribe(r => {
+      this._recipes = r.items;
     });
 
   }
