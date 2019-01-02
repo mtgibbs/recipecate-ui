@@ -9,6 +9,8 @@ import { AngularMaterialModule } from './shared/angular-material.module';
 import { RecipeDetailPageComponent } from './components/recipe-detail-page/recipe-detail-page.component';
 import { RecipesResolver, RecipeDetailResolver } from './resolvers';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,8 @@ import { RecipesResolver, RecipeDetailResolver } from './resolvers';
     BrowserModule,
     AppRoutingModule,
     ApiModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [
     RecipesResolver,

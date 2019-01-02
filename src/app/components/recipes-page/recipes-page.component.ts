@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecipeListItem } from 'src/app/api/models';
 import { map } from 'rxjs/operators';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-recipes-page',
@@ -10,7 +11,9 @@ import { map } from 'rxjs/operators';
 })
 export class RecipesPageComponent implements OnInit {
 
-  _recipes: RecipeListItem[];
+  displayedColumns = ['id', 'name', 'link'];
+  dataSource: MatTableDataSource<RecipeListItem>;
+  recipes: RecipeListItem[];
 
   constructor(
     route: ActivatedRoute) {
@@ -18,12 +21,17 @@ export class RecipesPageComponent implements OnInit {
     route.data.pipe(
       map(data => data.recipes)
     ).subscribe(r => {
-      this._recipes = r.items;
+      this.recipes = r.items;
+      this.dataSource = new MatTableDataSource(this.recipes);
     });
 
   }
 
   ngOnInit() {
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
