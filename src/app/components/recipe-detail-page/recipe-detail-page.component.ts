@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { RecipeListItem } from 'src/app/api/models';
+import { Recipe, Ingredient } from 'src/app/api/models';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-recipe-detail-page',
@@ -10,12 +11,25 @@ import { RecipeListItem } from 'src/app/api/models';
 })
 export class RecipeDetailPageComponent implements OnInit {
 
-  constructor(
-    private route: ActivatedRoute) {
+  recipe: Recipe;
 
+  displayedColumns = ['name', 'amount', 'unit_of_measurement'];
+  ingredientTableDataSource: MatTableDataSource<Ingredient>;
+
+  constructor(
+    route: ActivatedRoute) {
+      // recipe
+
+      route.data.pipe(
+        map(data => data.recipe)
+      ).subscribe((r: Recipe) => {
+        this.recipe = r;
+        this.ingredientTableDataSource = new MatTableDataSource(this.recipe.ingredients);
+      });
   }
 
   ngOnInit() {
+    console.log(this.recipe);
   }
 
 }
