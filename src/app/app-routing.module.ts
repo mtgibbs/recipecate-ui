@@ -18,6 +18,11 @@ const routes: Routes = [
     resolve: {
       recipe: RecipeDetailResolver
     }
+  },
+  {
+    path: '',
+    redirectTo: 'recipes',
+    pathMatch: 'full'
   }
 ];
 
