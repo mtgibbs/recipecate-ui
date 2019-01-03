@@ -1,10 +1,51 @@
-<form>
-  <mat-form-field>
-    <input matInput placeholder="Name">
-  </mat-form-field>
+<form (ngSubmit)="onSubmit()" #newRecipeForm="ngForm">
 
-  <mat-form-field>
-    <textarea matInput placeholder="Instructions"></textarea>
-  </mat-form-field>
+  <h1>Add a new Recipe</h1>
 
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Name" name="name" id="name" [(ngModel)]="name" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Instructions" name="instructions" id="instructions" [(ngModel)]="instructions"
+        required>
+      </textarea>
+    </mat-form-field>
+
+    <ul>
+      <li *ngFor="let ingredient of ingredients; let i = index;">
+        <mat-form-field>
+          <input matInput name="ingredient_name_{{i}}" [(ngModel)]="ingredients[i].name" placeholder="Ingredient Name"
+            [matAutocomplete]="auto" required>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of ingredientList" [value]="option.name">
+              {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="number" name="ingredient_amount_{{i}}" matInput [(ngModel)]="ingredients[i].amount" placeholder="Amount"
+            required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="ingredient_uom_{{i}}" [(ngModel)]="ingredients[i].unit_of_measurement" placeholder="Unit of Measurement"
+            required>
+        </mat-form-field>
+
+        <button type="button" mat-icon-button (click)="onRemoveIngredientBtnClick(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </li>
+    </ul>
+
+    <button id="addIngredientBtn" type="button" mat-button color="primary" (click)="onAddIngredientBtnClick()">
+      Add Ingredient
+    </button>
+  </div>
+
+  <button type="submit" mat-raised-button color="primary" [disabled]="!newRecipeForm.form.valid || !ingredients.length">
+    Add Recipe
+  </button>
 </form>

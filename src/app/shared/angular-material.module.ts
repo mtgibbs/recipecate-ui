@@ -20,7 +20,8 @@ import {
     MatGridListModule,
     MatListModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatAutocompleteModule
 } from '@angular/material';
 
 const MODULES = [
@@ -42,7 +43,8 @@ const MODULES = [
     MatCardModule,
     MatGridListModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatAutocompleteModule
 ];
 
 const COMPONENTS = [
