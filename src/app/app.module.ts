@@ -7,7 +7,7 @@ import { RecipesPageComponent } from './components/recipes-page/recipes-page.com
 import { ApiModule } from './api/api.module';
 import { AngularMaterialModule } from './shared/angular-material.module';
 import { RecipeDetailPageComponent } from './components/recipe-detail-page/recipe-detail-page.component';
-import { RecipesResolver, RecipeDetailResolver } from './resolvers';
+import { RecipesResolver, RecipeDetailResolver, IngredientsResolver } from './resolvers';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipeCreatePageComponent } from './components/recipe-create-page/recipe-create-page.component';
@@ -28,7 +28,8 @@ import { RecipeCreatePageComponent } from './components/recipe-create-page/recip
   ],
   providers: [
     RecipesResolver,
-    RecipeDetailResolver
+    RecipeDetailResolver,
+    IngredientsResolver
   ],
   bootstrap: [AppComponent]
 })

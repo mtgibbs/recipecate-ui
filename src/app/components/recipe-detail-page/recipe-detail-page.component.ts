@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { Recipe, Ingredient } from 'src/app/api/models';
+import { Recipe, RecipeIngredientDetail } from 'src/app/api/models';
 import { MatTableDataSource } from '@angular/material';
 
 @Component({
@@ -14,18 +14,18 @@ export class RecipeDetailPageComponent implements OnInit {
   recipe: Recipe;
 
   displayedColumns = ['name', 'amount', 'unit_of_measurement'];
-  ingredientTableDataSource: MatTableDataSource<Ingredient>;
+  ingredientTableDataSource: MatTableDataSource<RecipeIngredientDetail>;
 
   constructor(
     route: ActivatedRoute) {
-      // recipe
+    // recipe
 
-      route.data.pipe(
-        map(data => data.recipe)
-      ).subscribe((r: Recipe) => {
-        this.recipe = r;
-        this.ingredientTableDataSource = new MatTableDataSource(this.recipe.ingredients);
-      });
+    route.data.pipe(
+      map(data => data.recipe)
+    ).subscribe((r: Recipe) => {
+      this.recipe = r;
+      this.ingredientTableDataSource = new MatTableDataSource(this.recipe.ingredients);
+    });
   }
 
   ngOnInit() {

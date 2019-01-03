@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipesPageComponent } from './components/recipes-page/recipes-page.component';
 import { RecipeDetailPageComponent } from './components/recipe-detail-page/recipe-detail-page.component';
-import { RecipesResolver, RecipeDetailResolver } from './resolvers';
+import { RecipesResolver, RecipeDetailResolver, IngredientsResolver } from './resolvers';
+import { RecipeCreatePageComponent } from './components/recipe-create-page/recipe-create-page.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,13 @@ const routes: Routes = [
     component: RecipesPageComponent,
     resolve: {
       recipes: RecipesResolver
+    }
+  },
+  {
+    path: 'recipes/new',
+    component: RecipeCreatePageComponent,
+    resolve: {
+      ingredients: IngredientsResolver
     }
   },
   {
