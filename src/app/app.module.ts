@@ -10,12 +10,14 @@ import { RecipeDetailPageComponent } from './components/recipe-detail-page/recip
 import { RecipesResolver, RecipeDetailResolver } from './resolvers';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RecipeCreatePageComponent } from './components/recipe-create-page/recipe-create-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipesPageComponent,
-    RecipeDetailPageComponent
+    RecipeDetailPageComponent,
+    RecipeCreatePageComponent
   ],
   imports: [
     BrowserModule,
