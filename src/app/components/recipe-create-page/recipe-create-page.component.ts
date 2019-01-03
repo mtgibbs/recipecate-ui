@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { Ingredient, IngredientRequest } from 'src/app/api/models';
+import { Ingredient, IngredientRequest, RecipeRequest } from 'src/app/api/models';
 import { Observable } from 'rxjs';
+import { RecipesService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-recipe-create-page',
@@ -21,7 +22,8 @@ export class RecipeCreatePageComponent implements OnInit {
   ingredients: IngredientRequest[];
 
   constructor(
-    route: ActivatedRoute) {
+    route: ActivatedRoute,
+    private recipesService: RecipesService) {
 
     route.data.pipe(map(data => data.ingredients))
       .subscribe((i: Ingredient[]) => {
@@ -40,7 +42,19 @@ export class RecipeCreatePageComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this);
 
+    const req: RecipeRequest = {
+      ingredients: this.ingredients,
+      instructions: this.instructions,
+      name: this.name
+    };
+
+    console.log(req);
+
+    this.recipesService.postRecipesAdd(req).subscribe(() => {
+      console.log('success!')
+    }); // TODO: Handle it!
   }
 
   onAddIngredientBtnClick() {
