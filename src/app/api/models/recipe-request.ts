@@ -1,7 +1,7 @@
 /* tslint:disable */
-import { IngredientsRequest } from './ingredients-request';
+import { IngredientRequests } from './ingredient-requests';
 export interface RecipeRequest {
   name: string;
   instructions?: string;
-  ingredients: IngredientsRequest;
+  ingredients: IngredientRequests;
 }

@@ -1,9 +1,11 @@
+export { Ingredient } from './models/ingredient';
+export { Ingredients } from './models/ingredients';
 export { RecipeListItem } from './models/recipe-list-item';
 export { Items } from './models/items';
 export { RecipePageResponse } from './models/recipe-page-response';
-export { Ingredient } from './models/ingredient';
-export { Ingredients } from './models/ingredients';
+export { RecipeIngredientDetail } from './models/recipe-ingredient-detail';
+export { IngredientDetails } from './models/ingredient-details';
 export { Recipe } from './models/recipe';
 export { IngredientRequest } from './models/ingredient-request';
-export { IngredientsRequest } from './models/ingredients-request';
+export { IngredientRequests } from './models/ingredient-requests';
 export { RecipeRequest } from './models/recipe-request';
