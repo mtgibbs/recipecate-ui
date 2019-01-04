@@ -1,3 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span>Recipecate</span>
+        <a mat-button [routerLink]="[ '/', 'mealplans' ]" routerLinkActive="active">Meal Plans</a>
+        <a mat-button [routerLink]="[ '/', 'recipes' ]" routerLinkActive="active">Recipes</a>
+    </mat-toolbar-row>
+</mat-toolbar>
+
 <router-outlet></router-outlet>
