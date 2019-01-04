@@ -14,6 +14,7 @@ import { RecipesResolver, RecipeDetailResolver, IngredientsResolver, MealPlanDet
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipeCreatePageComponent } from './components/recipe-create-page/recipe-create-page.component';
 import { MealPlansPageComponent } from './components/meal-plans-page/meal-plans-page.component';
+import { MealPlanDetailPageComponent } from './components/meal-plan-detail-page/meal-plan-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MealPlansPageComponent } from './components/meal-plans-page/meal-plans-
     RecipesPageComponent,
     RecipeDetailPageComponent,
     RecipeCreatePageComponent,
-    MealPlansPageComponent
+    MealPlansPageComponent,
+    MealPlanDetailPageComponent
   ],
   imports: [
     BrowserModule,
