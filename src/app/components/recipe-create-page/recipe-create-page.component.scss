@@ -17,23 +17,35 @@ form {
         li {
             list-style: none;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
 
             mat-form-field {
                 &:nth-child(1) {
+                    flex-shrink: 2;
                     flex-grow: 3;
                 }
-                &:nth-child(1) {
+                &:nth-child(2) {
+                    flex-shrink: 1;
                     flex-grow: 2;
                 }
-                &:nth-child(1) {
+                &:nth-child(3) {
+                    flex-shrink: 1;
                     flex-grow: 1;
                 }
-                &:nth-child(1) {
+                &:nth-child(4) {
+                    flex-shrink: 1;
                     flex-grow: 1;
                 }
             }
         }
+    }
+
+    #addIngredientBtn {
+        text-align: right;
+    }
+
+    #submitBtn {
+        margin: 20px 0;
     }
 }
