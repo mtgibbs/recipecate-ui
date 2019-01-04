@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipesPageComponent } from './components/recipes-page/recipes-page.component';
 import { RecipeDetailPageComponent } from './components/recipe-detail-page/recipe-detail-page.component';
-import { RecipesResolver, RecipeDetailResolver, IngredientsResolver } from './resolvers';
+import { RecipesResolver, RecipeDetailResolver, IngredientsResolver, MealPlansResolver } from './resolvers';
 import { RecipeCreatePageComponent } from './components/recipe-create-page/recipe-create-page.component';
+import { MealPlansPageComponent } from './components/meal-plans-page/meal-plans-page.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,18 @@ const routes: Routes = [
       recipe: RecipeDetailResolver
     }
   },
+  // {
+  //   path: 'mealplan/new',
+
+  // }
+  {
+    path: 'mealplans',
+    component: MealPlansPageComponent,
+    resolve: {
+      mealPlans: MealPlansResolver
+    }
+  },
+
   {
     path: '',
     redirectTo: 'recipes',
