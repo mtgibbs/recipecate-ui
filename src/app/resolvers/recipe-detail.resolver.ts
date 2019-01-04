@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { RecipesService } from '../api/services';
 import { Recipe } from '../api/models';
 
 @Injectable()
 export class RecipeDetailResolver implements Resolve<Recipe> {
-    
+
     constructor(
         private recipesService: RecipesService) { }
 
