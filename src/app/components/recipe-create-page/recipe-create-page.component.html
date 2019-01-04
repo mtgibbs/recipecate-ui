@@ -8,8 +8,8 @@
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput placeholder="Instructions" name="instructions" id="instructions" [(ngModel)]="instructions"
-        required>
+      <textarea matInput matAutosizeMinRows="5" matAutosizeMaxRows="15" matTextareaAutosize="true" placeholder="Instructions"
+        name="instructions" id="instructions" [(ngModel)]="instructions" maxlength="999" required>
       </textarea>
     </mat-form-field>
 

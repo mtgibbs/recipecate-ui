@@ -21,7 +21,9 @@ import {
     MatListModule,
     MatDialogModule,
     MatTableModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
 } from '@angular/material';
 
 const MODULES = [
@@ -44,7 +46,9 @@ const MODULES = [
     MatGridListModule,
     MatDialogModule,
     MatTableModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
 ];
 
 const COMPONENTS = [

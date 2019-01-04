@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, catchError } from 'rxjs/operators';
 import { Ingredient, IngredientRequest, RecipeRequest } from 'src/app/api/models';
-import { Observable } from 'rxjs';
 import { RecipesService } from 'src/app/api/services';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-recipe-create-page',
@@ -23,7 +23,9 @@ export class RecipeCreatePageComponent implements OnInit {
 
   constructor(
     route: ActivatedRoute,
-    private recipesService: RecipesService) {
+    private router: Router,
+    private recipesService: RecipesService,
+    private snackBar: MatSnackBar) {
 
     route.data.pipe(map(data => data.ingredients))
       .subscribe((i: Ingredient[]) => {
@@ -50,11 +52,19 @@ export class RecipeCreatePageComponent implements OnInit {
       name: this.name
     };
 
-    console.log(req);
-
-    this.recipesService.postRecipesAdd(req).subscribe(() => {
-      console.log('success!')
-    }); // TODO: Handle it!
+    this.recipesService.postRecipesAdd(req).subscribe(
+      result => {
+        console.log(result);
+        this.snackBar.open('Recipe added successfully!', 'Ok', {
+          duration: 1000
+        });
+      },
+      err => {
+        console.log(err);
+        this.snackBar.open('Reciped failed to add', 'Dismiss', {
+          duration: 1500
+        });
+      });
   }
 
   onAddIngredientBtnClick() {
@@ -63,8 +73,6 @@ export class RecipeCreatePageComponent implements OnInit {
       name: '',
       unit_of_measurement: ''
     });
-
-    console.log(this);
   }
 
   onRemoveIngredientBtnClick(index: number) {

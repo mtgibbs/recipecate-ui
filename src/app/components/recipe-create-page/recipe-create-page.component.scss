@@ -9,5 +9,31 @@ form {
         display: block;
         margin: 4px;
     }
+
+    ul {
     
+        padding-inline-start: 20px;
+
+        li {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            mat-form-field {
+                &:nth-child(1) {
+                    flex-grow: 3;
+                }
+                &:nth-child(1) {
+                    flex-grow: 2;
+                }
+                &:nth-child(1) {
+                    flex-grow: 1;
+                }
+                &:nth-child(1) {
+                    flex-grow: 1;
+                }
+            }
+        }
+    }
 }
