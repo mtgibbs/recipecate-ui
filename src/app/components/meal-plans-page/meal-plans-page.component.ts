@@ -12,6 +12,8 @@ import { MatTableDataSource } from '@angular/material';
 export class MealPlansPageComponent implements OnInit {
 
   mealPlans: MealPlan[];
+
+  displayedColumns = ['id', 'name', 'notes', 'link'];
   dataSource: MatTableDataSource<MealPlan>;
 
   constructor(
