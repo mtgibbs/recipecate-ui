@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration } from './api-configuration';
 
 import { IngredientsService } from './services/ingredients.service';
+import { MealplanService } from './services/mealplan.service';
 import { RecipesService } from './services/recipes.service';
 
 /**
@@ -20,6 +21,7 @@ import { RecipesService } from './services/recipes.service';
   providers: [
     ApiConfiguration,
     IngredientsService,
+    MealplanService,
     RecipesService
   ],
 })

@@ -27,6 +27,22 @@
                 }
             }
         },
+        "/mealplan": {
+            "get": {
+                "operationId": "getMealplan",
+                "tags": [
+                    "mealplan"
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/mealPlans"
+                        },
+                        "description": "Successful"
+                    }
+                }
+            }
+        },
         "/recipes": {
             "get": {
                 "operationId": "getRecipes",
@@ -37,6 +53,54 @@
                     "200": {
                         "schema": {
                             "$ref": "#/definitions/recipePageResponse"
+                        },
+                        "description": "Successful"
+                    }
+                }
+            }
+        },
+        "/mealplan/{id}/detail": {
+            "get": {
+                "operationId": "getMealplanIdDetail",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "mealplan"
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/mealPlanDetails"
+                        },
+                        "description": "Successful"
+                    }
+                }
+            }
+        },
+        "/mealplan/{id}/shoppinglist": {
+            "get": {
+                "operationId": "getMealplanIdShoppinglist",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "mealplan"
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/measuredIngredientsList"
                         },
                         "description": "Successful"
                     }
@@ -61,6 +125,31 @@
                     "200": {
                         "schema": {
                             "$ref": "#/definitions/recipe"
+                        },
+                        "description": "Successful"
+                    }
+                }
+            }
+        },
+        "/mealplan/add": {
+            "post": {
+                "operationId": "postMealplanAdd",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/addMealPlanRequest"
+                        }
+                    }
+                ],
+                "tags": [
+                    "mealplan"
+                ],
+                "responses": {
+                    "default": {
+                        "schema": {
+                            "type": "string"
                         },
                         "description": "Successful"
                     }
@@ -115,6 +204,34 @@
                 "$ref": "#/definitions/ingredient"
             }
         },
+        "mealPlan": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "number"
+                },
+                "notes": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "createdDate"
+            ]
+        },
+        "mealPlans": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/mealPlan"
+            }
+        },
         "recipeListItem": {
             "type": "object",
             "properties": {
@@ -123,8 +240,15 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "instructions": {
+                    "type": "string"
                 }
-            }
+            },
+            "required": [
+                "id",
+                "name"
+            ]
         },
         "items": {
             "type": "array",
@@ -141,6 +265,58 @@
                 "items": {
                     "$ref": "#/definitions/items"
                 }
+            }
+        },
+        "mealPlanDetails": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "createdDate": {
+                    "type": "number"
+                },
+                "notes": {
+                    "type": "string"
+                },
+                "recipes": {
+                    "$ref": "#/definitions/items"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "createdDate"
+            ]
+        },
+        "measuredIngredient": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "unit_of_measurement": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ]
+        },
+        "measuredIngredientsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/measuredIngredient"
             }
         },
         "recipeIngredientDetail": {
@@ -184,6 +360,32 @@
             },
             "required": [
                 "id"
+            ]
+        },
+        "recipeIds": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "integer"
+            }
+        },
+        "addMealPlanRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "maxLength": 200
+                },
+                "notes": {
+                    "type": "string",
+                    "maxLength": 500
+                },
+                "recipeIds": {
+                    "$ref": "#/definitions/recipeIds"
+                }
+            },
+            "required": [
+                "name"
             ]
         },
         "ingredientRequest": {
