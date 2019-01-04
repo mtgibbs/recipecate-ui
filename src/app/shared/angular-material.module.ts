@@ -23,7 +23,8 @@ import {
     MatTableModule,
     MatAutocompleteModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule
 } from '@angular/material';
 
 const MODULES = [
@@ -48,7 +49,8 @@ const MODULES = [
     MatTableModule,
     MatAutocompleteModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule
 ];
 
 const COMPONENTS = [
@@ -63,9 +65,7 @@ const COMPONENTS = [
     declarations: [],
     exports: [...MODULES, ...COMPONENTS],
     entryComponents: [],
-    providers: [
-
-    ]
+    providers: []
 })
 export class AngularMaterialModule { }
 
