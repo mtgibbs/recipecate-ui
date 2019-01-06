@@ -1,11 +1,9 @@
 table {
     width: 100%;
     margin: 20px 0;
-
     .mat-row.removed {
         text-decoration: line-through;
     }
-
     .mat-column-action {
         button {
             float: right;
@@ -15,4 +13,13 @@ table {
 
 .mat-column-select {
     overflow: initial;
+}
+
+// just a silly hack to stop clicking
+// this doesn't stop keyboard navigation
+// TODO: Handle this better later
+:host ::ng-deep {
+    .mat-step-header {
+        pointer-events: none !important;
+    }
 }
