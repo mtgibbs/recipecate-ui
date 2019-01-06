@@ -3,6 +3,35 @@
 
     <ng-template matStepLabel>Select Recipes</ng-template>
 
+    <table mat-table [dataSource]="recipeDataSource" class="mat-elevation-z2">
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? recipeSelection.toggle(row) : null"
+            [checked]="recipeSelection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let recipe"> {{ recipe.id }} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let recipe"> {{ recipe.name }} </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedRecipeColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedRecipeColumns;"></tr>
+    </table>
+
     <!-- <button mat-button matStepperNext>Next</button> -->
 
   </mat-step>
