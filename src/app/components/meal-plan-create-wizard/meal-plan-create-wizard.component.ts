@@ -34,4 +34,7 @@ export class MealPlanCreateWizardComponent implements OnInit {
     this.recipeDataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  get recipeSelectionStepComplete(): boolean {
+    return this.recipeSelection.selected.length > 0;
+  }
 }

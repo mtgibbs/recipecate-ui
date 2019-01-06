@@ -1,5 +1,5 @@
 <mat-horizontal-stepper linear="true" #stepper>
-  <mat-step>
+  <mat-step [completed]="recipeSelectionStepComplete">
 
     <ng-template matStepLabel>Select Recipes</ng-template>
 
@@ -27,12 +27,11 @@
         <td mat-cell *matCellDef="let recipe"> {{ recipe.name }} </td>
       </ng-container>
 
-
       <tr mat-header-row *matHeaderRowDef="displayedRecipeColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedRecipeColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedRecipeColumns;" (click)="recipeSelection.toggle(row)"></tr>
     </table>
 
-    <!-- <button mat-button matStepperNext>Next</button> -->
+    <button mat-button matStepperNext [disabled]="!recipeSelectionStepComplete">Next</button>
 
   </mat-step>
 
