@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { MealPlan } from 'src/app/api/models/meal-plan';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog } from '@angular/material';
+import { MealPlanCreateDialogComponent } from '../meal-plan-create-dialog/meal-plan-create-dialog.component';
+import { RecipesService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-meal-plans-page',
@@ -17,7 +19,9 @@ export class MealPlansPageComponent implements OnInit {
   dataSource: MatTableDataSource<MealPlan>;
 
   constructor(
-    route: ActivatedRoute) {
+    route: ActivatedRoute,
+    private dialog: MatDialog,
+    private recipeService: RecipesService) {
 
     route.data.pipe(
       map(data => data.mealPlans)
@@ -31,4 +35,17 @@ export class MealPlansPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  addMealPlanBtnClicked() {
+
+    this.recipeService.getRecipes().subscribe(rp => {
+      const data = {
+        recipes: rp.items
+      };
+
+      const dialogRef = this.dialog.open(MealPlanCreateDialogComponent, {
+        width: '80vw',
+        data: data
+      });
+    });
+  }
 }

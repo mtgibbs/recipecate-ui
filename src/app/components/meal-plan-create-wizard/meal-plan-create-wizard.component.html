@@ -1,0 +1,25 @@
+<mat-horizontal-stepper linear="true" #stepper>
+  <mat-step>
+
+    <ng-template matStepLabel>Select Recipes</ng-template>
+
+    <!-- <button mat-button matStepperNext>Next</button> -->
+
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Review Ingredients</ng-template>
+
+    <!-- <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button> -->
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Finalize</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

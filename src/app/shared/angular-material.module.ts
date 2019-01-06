@@ -24,7 +24,8 @@ import {
     MatAutocompleteModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatStepperModule
 } from '@angular/material';
 
 const MODULES = [
@@ -50,7 +51,8 @@ const MODULES = [
     MatAutocompleteModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatStepperModule
 ];
 
 const COMPONENTS = [

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecipeCreatePageComponent } from './components/recipe-create-page/recipe-create-page.component';
 import { MealPlansPageComponent } from './components/meal-plans-page/meal-plans-page.component';
 import { MealPlanDetailPageComponent } from './components/meal-plan-detail-page/meal-plan-detail-page.component';
+import { MealPlanCreateDialogComponent } from './components/meal-plan-create-dialog/meal-plan-create-dialog.component';
+import { MealPlanCreateWizardComponent } from './components/meal-plan-create-wizard/meal-plan-create-wizard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { MealPlanDetailPageComponent } from './components/meal-plan-detail-page/
     RecipeDetailPageComponent,
     RecipeCreatePageComponent,
     MealPlansPageComponent,
-    MealPlanDetailPageComponent
+    MealPlanDetailPageComponent,
+    MealPlanCreateDialogComponent,
+    MealPlanCreateWizardComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,8 @@ import { MealPlanDetailPageComponent } from './components/meal-plan-detail-page/
     ApiModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     RecipesResolver,
@@ -39,6 +44,9 @@ import { MealPlanDetailPageComponent } from './components/meal-plan-detail-page/
     IngredientsResolver,
     MealPlanDetailResolver,
     MealPlansResolver
+  ],
+  entryComponents: [
+    MealPlanCreateDialogComponent
   ],
   bootstrap: [AppComponent]
 })
