@@ -13,7 +13,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   recipe: Recipe;
 
-  displayedColumns = ['name', 'amount', 'unit_of_measurement'];
+  displayedColumns = ['name', 'amount', 'unitOfMeasurement'];
   ingredientTableDataSource: MatTableDataSource<RecipeIngredientDetail>;
 
   constructor(

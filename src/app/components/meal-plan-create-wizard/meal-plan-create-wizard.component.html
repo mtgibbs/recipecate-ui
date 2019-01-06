@@ -31,12 +31,42 @@
       <tr mat-row *matRowDef="let row; columns: displayedRecipeColumns;" (click)="recipeSelection.toggle(row)"></tr>
     </table>
 
-    <button mat-button matStepperNext [disabled]="!recipeSelectionStepComplete">Next</button>
+    <button mat-button [disabled]="!recipeSelectionStepComplete" (click)="recipeStepNextBtnClicked()">Next</button>
 
   </mat-step>
 
   <mat-step>
     <ng-template matStepLabel>Review Ingredients</ng-template>
+
+    <table mat-table [dataSource]="ingredientsDataSource" class="mat-elevation-z2">
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let ingredient"> {{ ingredient.id }} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let ingredient"> {{ ingredient.name }} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef> Amount </th>
+            <td mat-cell *matCellDef="let ingredient"> {{ ingredient.amount }} </td>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="unitOfMeasurement">
+            <th mat-header-cell *matHeaderCellDef> Unit </th>
+            <td mat-cell *matCellDef="let ingredient"> {{ ingredient.unitOfMeasurement }} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedIngredientColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedIngredientColumns;"></tr>
+    </table>
 
     <!-- <button mat-button matStepperPrevious>Back</button>
     <button mat-button matStepperNext>Next</button> -->
