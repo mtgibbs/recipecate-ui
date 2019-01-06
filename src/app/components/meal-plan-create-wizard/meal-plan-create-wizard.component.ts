@@ -21,7 +21,7 @@ export class MealPlanCreateWizardComponent implements OnInit {
   get recipeDataSource(): MatTableDataSource<RecipeListItem> { return this._recipeDataSource; }
   get recipeSelection(): SelectionModel<RecipeListItem> { return this._recipeSelection; }
 
-  displayedIngredientColumns = ['name', 'amount', 'unitOfMeasurement'];
+  displayedIngredientColumns = ['name', 'amount', 'unitOfMeasurement', 'action'];
   private _ingredientsDataSource: MatTableDataSource<Ingredient>;
   private _ingredientSelection: SelectionModel<Ingredient>;
 
@@ -73,13 +73,14 @@ export class MealPlanCreateWizardComponent implements OnInit {
         return a.name.localeCompare(b.name);
       });
 
-      console.log(result);
-      console.log(mappedResult);
-
       this._ingredientsDataSource = new MatTableDataSource<Ingredient>(mappedResult);
       this._ingredientSelection = new SelectionModel<Ingredient>(true, mappedResult);
       this.stepper.next();
     });
+  }
+
+  handleRemoveIngredientBtnClick(row: Ingredient) {
+    this.ingredientSelection.toggle(row);
   }
   // #endregion
 }

@@ -40,32 +40,42 @@
 
     <table mat-table [dataSource]="ingredientsDataSource" class="mat-elevation-z2">
 
-        <!-- Id Column -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let ingredient"> {{ ingredient.id }} </td>
-        </ng-container>
-    
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let ingredient"> {{ ingredient.name }} </td>
-        </ng-container>
-    
-        <!-- Name Column -->
-        <ng-container matColumnDef="amount">
-            <th mat-header-cell *matHeaderCellDef> Amount </th>
-            <td mat-cell *matCellDef="let ingredient"> {{ ingredient.amount }} </td>
-        </ng-container>
-    
-        <!-- Name Column -->
-        <ng-container matColumnDef="unitOfMeasurement">
-            <th mat-header-cell *matHeaderCellDef> Unit </th>
-            <td mat-cell *matCellDef="let ingredient"> {{ ingredient.unitOfMeasurement }} </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedIngredientColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedIngredientColumns;"></tr>
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let ingredient"> {{ ingredient.id }} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let ingredient"> {{ ingredient.name }} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let ingredient"> {{ ingredient.amount }} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="unitOfMeasurement">
+        <th mat-header-cell *matHeaderCellDef> Unit </th>
+        <td mat-cell *matCellDef="let ingredient"> {{ ingredient.unitOfMeasurement }} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-button (click)="handleRemoveIngredientBtnClick(row)">
+            {{ ingredientSelection.isSelected(row) ? 'Remove' : 'Undo' }}
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedIngredientColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedIngredientColumns;" [ngClass]="{ 'removed': !ingredientSelection.isSelected(row) }"></tr>
     </table>
 
     <!-- <button mat-button matStepperPrevious>Back</button>

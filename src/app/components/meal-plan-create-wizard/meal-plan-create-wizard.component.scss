@@ -1,6 +1,16 @@
 table {
     width: 100%;
     margin: 20px 0;
+
+    .mat-row.removed {
+        text-decoration: line-through;
+    }
+
+    .mat-column-action {
+        button {
+            float: right;
+        }
+    }
 }
 
 .mat-column-select {
