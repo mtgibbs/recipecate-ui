@@ -20,12 +20,14 @@ class IngredientsService extends __BaseService {
   }
 
   /**
+   * @param recipeId undefined
    * @return Successful
    */
-  getIngredientsResponse(): __Observable<__StrictHttpResponse<Ingredients>> {
+  getIngredientsResponse(recipeId?: Array<number>): __Observable<__StrictHttpResponse<Ingredients>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    (recipeId || []).forEach(val => {if (val != null) __params = __params.append('recipeId', val.toString())});
     let req = new HttpRequest<any>(
       'GET',
       this.rootUrl + `/ingredients`,
@@ -44,10 +46,11 @@ class IngredientsService extends __BaseService {
     );
   }
   /**
+   * @param recipeId undefined
    * @return Successful
    */
-  getIngredients(): __Observable<Ingredients> {
-    return this.getIngredientsResponse().pipe(
+  getIngredients(recipeId?: Array<number>): __Observable<Ingredients> {
+    return this.getIngredientsResponse(recipeId).pipe(
       __map(_r => _r.body as Ingredients)
     );
   }

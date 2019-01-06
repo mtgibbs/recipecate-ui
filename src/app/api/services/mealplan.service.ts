@@ -8,8 +8,8 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { MealPlans } from '../models/meal-plans';
-import { MealPlanDetails } from '../models/meal-plan-details';
 import { MeasuredIngredientsList } from '../models/measured-ingredients-list';
+import { MealPlanDetails } from '../models/meal-plan-details';
 import { AddMealPlanRequest } from '../models/add-meal-plan-request';
 @Injectable({
   providedIn: 'root',
@@ -59,42 +59,6 @@ class MealplanService extends __BaseService {
    * @param id undefined
    * @return Successful
    */
-  getMealplanIdDetailResponse(id: number): __Observable<__StrictHttpResponse<MealPlanDetails>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/mealplan/${id}/detail`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<MealPlanDetails>;
-      })
-    );
-  }
-  /**
-   * @param id undefined
-   * @return Successful
-   */
-  getMealplanIdDetail(id: number): __Observable<MealPlanDetails> {
-    return this.getMealplanIdDetailResponse(id).pipe(
-      __map(_r => _r.body as MealPlanDetails)
-    );
-  }
-
-  /**
-   * @param id undefined
-   * @return Successful
-   */
   getMealplanIdShoppinglistResponse(id: number): __Observable<__StrictHttpResponse<MeasuredIngredientsList>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
@@ -124,6 +88,42 @@ class MealplanService extends __BaseService {
   getMealplanIdShoppinglist(id: number): __Observable<MeasuredIngredientsList> {
     return this.getMealplanIdShoppinglistResponse(id).pipe(
       __map(_r => _r.body as MeasuredIngredientsList)
+    );
+  }
+
+  /**
+   * @param id undefined
+   * @return Successful
+   */
+  getMealplanIdDetailResponse(id: number): __Observable<__StrictHttpResponse<MealPlanDetails>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/mealplan/${id}/detail`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<MealPlanDetails>;
+      })
+    );
+  }
+  /**
+   * @param id undefined
+   * @return Successful
+   */
+  getMealplanIdDetail(id: number): __Observable<MealPlanDetails> {
+    return this.getMealplanIdDetailResponse(id).pipe(
+      __map(_r => _r.body as MealPlanDetails)
     );
   }
 
