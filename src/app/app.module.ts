@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { MealPlansPageComponent } from './components/meal-plans-page/meal-plans-
 import { MealPlanDetailPageComponent } from './components/meal-plan-detail-page/meal-plan-detail-page.component';
 import { MealPlanCreateDialogComponent } from './components/meal-plan-create-dialog/meal-plan-create-dialog.component';
 import { MealPlanCreateWizardComponent } from './components/meal-plan-create-wizard/meal-plan-create-wizard.component';
+import { INIT_API_CONFIGURATION } from './api-config';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MealPlanCreateWizardComponent } from './components/meal-plan-create-wiz
     ReactiveFormsModule
   ],
   providers: [
+    INIT_API_CONFIGURATION,
     RecipesResolver,
     RecipeDetailResolver,
     IngredientsResolver,
@@ -51,3 +53,5 @@ import { MealPlanCreateWizardComponent } from './components/meal-plan-create-wiz
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
