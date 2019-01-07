@@ -14,3 +14,11 @@
         line-height: 1.8em;
     }
 }
+
+table {
+    .mat-column-action, .mat-column-link {
+        button, a {
+            float: right;
+        }
+    }
+}
