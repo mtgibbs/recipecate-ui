@@ -163,9 +163,9 @@
                     "mealplan"
                 ],
                 "responses": {
-                    "default": {
+                    "200": {
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/addMealPlanResponse"
                         },
                         "description": "Successful"
                     }
@@ -449,6 +449,17 @@
             },
             "required": [
                 "name"
+            ]
+        },
+        "addMealPlanResponse": {
+            "type": "object",
+            "properties": {
+                "mealPlanId": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "mealPlanId"
             ]
         },
         "ingredientRequest": {

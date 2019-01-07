@@ -15,6 +15,7 @@ export { RecipeIds } from './models/recipe-ids';
 export { ShoppingListIngredient } from './models/shopping-list-ingredient';
 export { ShoppingList } from './models/shopping-list';
 export { AddMealPlanRequest } from './models/add-meal-plan-request';
+export { AddMealPlanResponse } from './models/add-meal-plan-response';
 export { IngredientRequest } from './models/ingredient-request';
 export { IngredientRequests } from './models/ingredient-requests';
 export { RecipeRequest } from './models/recipe-request';
