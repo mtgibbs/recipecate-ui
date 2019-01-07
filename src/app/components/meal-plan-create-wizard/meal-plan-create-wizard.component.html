@@ -84,10 +84,21 @@
 
   <mat-step>
     <ng-template matStepLabel>Finalize</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
+
+    <form [formGroup]="finalizeFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Meal Plan Name" formControlName="mealPlanName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput matAutosizeMinRows="5" matAutosizeMaxRows="10" matTextareaAutosize="true" placeholder="Instructions"
+          formControlName="mealPlanNotes" maxlength="499">
+        </textarea>
+      </mat-form-field>
+      <div>
+        <button type="button" mat-button matStepperPrevious>Back</button>
+        <button type="submit" mat-button [disabled]="finalizeFormGroup.invalid" (click)="handleSubmitMealPlanBtnClick()">Submit</button>
+      </div>
+    </form>
   </mat-step>
 </mat-horizontal-stepper>

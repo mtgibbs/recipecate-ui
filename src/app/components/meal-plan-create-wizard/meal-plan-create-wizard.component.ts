@@ -1,8 +1,11 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { RecipeListItem, Ingredient } from 'src/app/api/models';
+import { RecipeListItem, Ingredient, AddMealPlanRequest, ShoppingListIngredient } from 'src/app/api/models';
 import { MatStepper, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
-import { IngredientsService } from 'src/app/api/services';
+import { IngredientsService, MealplanService } from 'src/app/api/services';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-meal-plan-create-wizard',
@@ -28,8 +31,13 @@ export class MealPlanCreateWizardComponent implements OnInit {
   get ingredientsDataSource(): MatTableDataSource<Ingredient> { return this._ingredientsDataSource; }
   get ingredientSelection(): SelectionModel<Ingredient> { return this._ingredientSelection; }
 
+  finalizeFormGroup: FormGroup;
+
   constructor(
-    private ingredientsService: IngredientsService) {
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private ingredientsService: IngredientsService,
+    private mealPlanService: MealplanService) {
 
     this._recipeDataSource = new MatTableDataSource<RecipeListItem>([]);
     this._recipeSelection = new SelectionModel<RecipeListItem>(true, []);
@@ -40,6 +48,12 @@ export class MealPlanCreateWizardComponent implements OnInit {
 
   ngOnInit() {
     this.recipeDataSource.data = this.recipes;
+
+    this.finalizeFormGroup = this.formBuilder.group({
+      mealPlanName: ['', Validators.required],
+      mealPlanNotes: ['']
+    });
+
     console.log(this);
   }
 
@@ -52,7 +66,7 @@ export class MealPlanCreateWizardComponent implements OnInit {
   }
 
   // #region Event Handlers
-  recipeStepNextBtnClicked() {
+  recipeStepNextBtnClicked(): void {
 
     const recipeIds = this.recipeSelection.selected.map(r => r.id);
     this.ingredientsService.getIngredients(recipeIds).subscribe(result => {
@@ -79,8 +93,47 @@ export class MealPlanCreateWizardComponent implements OnInit {
     });
   }
 
-  handleRemoveIngredientBtnClick(row: Ingredient) {
+  handleRemoveIngredientBtnClick(row: Ingredient): void {
     this.ingredientSelection.toggle(row);
+  }
+
+  handleSubmitMealPlanBtnClick(): void {
+
+    console.log(this);
+
+    const recipeIds = this.recipeSelection.selected.map(r => r.id);
+    let shoppingListIngredients: ShoppingListIngredient[] = [];
+
+    if (!this.ingredientSelection.isEmpty()) {
+      shoppingListIngredients = this.ingredientSelection.selected.map(ingredient => {
+        const result: ShoppingListIngredient = {
+          amount: ingredient.amount,
+          id: ingredient.id,
+          name: ingredient.name,
+          unit_of_measurement: ingredient.unitOfMeasurement
+        };
+        return result;
+      });
+    }
+
+    const req: AddMealPlanRequest = {
+      name: this.finalizeFormGroup.controls.mealPlanName.value,
+      notes: this.finalizeFormGroup.controls.mealPlanNotes.value,
+      recipeIds: recipeIds,
+      shoppingList: shoppingListIngredients
+    };
+
+    this.mealPlanService.postMealplanAdd(req).subscribe(
+      (result) => {
+        console.log(result);
+        console.log('success');
+
+        this.router.navigate([ '/', 'mealplans' ]);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
   // #endregion
 }

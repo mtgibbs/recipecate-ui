@@ -11,6 +11,19 @@ table {
     }
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    height: 100%;
+
+    mat-form-field {
+        display: block;
+        margin: 4px;
+    }
+}
+
 .mat-column-select {
     overflow: initial;
 }
