@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { RecipeListItem, Ingredient, AddMealPlanRequest, ShoppingListIngredient } from 'src/app/api/models';
 import { MatStepper, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { IngredientsService, MealplanService } from 'src/app/api/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-meal-plan-create-wizard',
@@ -15,6 +14,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 export class MealPlanCreateWizardComponent implements OnInit {
 
   @Input() recipes: RecipeListItem[];
+  @Output() submit = new EventEmitter<AddMealPlanRequest>();
   @ViewChild(MatStepper) stepper: MatStepper;
 
   displayedRecipeColumns = ['select', 'id', 'name'];
@@ -99,8 +99,6 @@ export class MealPlanCreateWizardComponent implements OnInit {
 
   handleSubmitMealPlanBtnClick(): void {
 
-    console.log(this);
-
     const recipeIds = this.recipeSelection.selected.map(r => r.id);
     let shoppingListIngredients: ShoppingListIngredient[] = [];
 
@@ -123,17 +121,7 @@ export class MealPlanCreateWizardComponent implements OnInit {
       shoppingList: shoppingListIngredients
     };
 
-    this.mealPlanService.postMealplanAdd(req).subscribe(
-      (result) => {
-        console.log(result);
-        console.log('success');
-
-        this.router.navigate([ '/', 'mealplans' ]);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.submit.emit(req);
   }
   // #endregion
 }

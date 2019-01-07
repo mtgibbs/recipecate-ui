@@ -6,7 +6,7 @@
 </div>
 
 <div mat-dialog-content>
-  <app-meal-plan-create-wizard [recipes]="recipes"></app-meal-plan-create-wizard>
+  <app-meal-plan-create-wizard [recipes]="recipes" (submit)="handleWizardSubmit($event)"></app-meal-plan-create-wizard>
 </div>
 
 <div mat-dialog-actions>
