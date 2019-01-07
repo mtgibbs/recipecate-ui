@@ -19,7 +19,7 @@ export class MealPlanCreateDialogComponent implements OnInit {
     private mealPlanService: MealplanService,
     private router: Router) {
 
-      this.recipes = data.recipes;
+    this.recipes = data.recipes;
   }
 
   ngOnInit() {
@@ -27,10 +27,10 @@ export class MealPlanCreateDialogComponent implements OnInit {
 
   handleWizardSubmit(req: AddMealPlanRequest) {
     this.mealPlanService.postMealplanAdd(req).subscribe(
-      (result) => {
-        console.log(result);
+      async (result) => {
         if (result !== null) {
           this.router.navigate(['/', 'mealplans', result.mealPlanId]);
+          this.dialogRef.close();
         }
       },
       err => {
