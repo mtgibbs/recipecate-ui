@@ -10,6 +10,7 @@ import { map as __map, filter as __filter } from 'rxjs/operators';
 import { MealPlans } from '../models/meal-plans';
 import { MeasuredIngredientsList } from '../models/measured-ingredients-list';
 import { MealPlanDetails } from '../models/meal-plan-details';
+import { AddMealPlanResponse } from '../models/add-meal-plan-response';
 import { AddMealPlanRequest } from '../models/add-meal-plan-request';
 @Injectable({
   providedIn: 'root',
@@ -129,8 +130,9 @@ class MealplanService extends __BaseService {
 
   /**
    * @param body undefined
+   * @return Successful
    */
-  postMealplanAddResponse(body?: AddMealPlanRequest): __Observable<__StrictHttpResponse<null>> {
+  postMealplanAddResponse(body?: AddMealPlanRequest): __Observable<__StrictHttpResponse<AddMealPlanResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -148,16 +150,17 @@ class MealplanService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<null>;
+        return _r as __StrictHttpResponse<AddMealPlanResponse>;
       })
     );
   }
   /**
    * @param body undefined
+   * @return Successful
    */
-  postMealplanAdd(body?: AddMealPlanRequest): __Observable<null> {
+  postMealplanAdd(body?: AddMealPlanRequest): __Observable<AddMealPlanResponse> {
     return this.postMealplanAddResponse(body).pipe(
-      __map(_r => _r.body as null)
+      __map(_r => _r.body as AddMealPlanResponse)
     );
   }
 }
