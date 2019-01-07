@@ -2,6 +2,8 @@
 
 <p>{{ mealPlan.notes }}</p>
 
+<a mat-button [routerLink]="[ '/', 'mealplans', mealPlan.id, 'shoppinglist' ]" routerLinkActive="active">Shopping List</a>
+
 <table mat-table [dataSource]="recipeTableDataSource" class="mat-elevation-z2">
 
   <!-- Id Column -->

@@ -29,7 +29,7 @@ export class MealPlanDetailPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.mealPlan);
+
   }
 
 }
