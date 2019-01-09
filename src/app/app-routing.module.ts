@@ -5,12 +5,10 @@ import { RecipeDetailPageComponent } from './components/recipe-detail-page/recip
 import {
   RecipesResolver,
   RecipeDetailResolver,
-  IngredientsResolver,
   MealPlansResolver,
   MealPlanDetailResolver,
   MealPlanShoppingListIngredientResolver
 } from './resolvers';
-import { RecipeCreatePageComponent } from './components/recipe-create-page/recipe-create-page.component';
 import { MealPlansPageComponent } from './components/meal-plans-page/meal-plans-page.component';
 import { MealPlanDetailPageComponent } from './components/meal-plan-detail-page/meal-plan-detail-page.component';
 import { MealPlanShoppingListPageComponent } from './components/meal-plan-shopping-list-page/meal-plan-shopping-list-page.component';
@@ -21,13 +19,6 @@ const routes: Routes = [
     component: RecipesPageComponent,
     resolve: {
       recipes: RecipesResolver
-    }
-  },
-  {
-    path: 'recipes/new',
-    component: RecipeCreatePageComponent,
-    resolve: {
-      ingredients: IngredientsResolver
     }
   },
   {

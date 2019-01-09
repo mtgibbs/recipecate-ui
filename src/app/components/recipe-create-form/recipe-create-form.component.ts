@@ -1,14 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Ingredient, IngredientRequest, RecipeRequest } from 'src/app/api/models';
-import { RecipesService } from 'src/app/api/services';
-import { MatSnackBar } from '@angular/material';
 
 @Component({
-  selector: 'app-recipe-create-page',
-  templateUrl: './recipe-create-page.component.html',
-  styleUrls: ['./recipe-create-page.component.scss']
+  selector: 'app-recipe-create-form',
+  templateUrl: './recipe-create-form.component.html',
+  styleUrls: ['./recipe-create-form.component.scss']
 })
-export class RecipeCreatePageComponent implements OnInit {
+export class RecipeCreateFormComponent implements OnInit {
 
   @Input() ingredientList: Ingredient[];
   @Output() recipeSubmit = new EventEmitter<RecipeRequest>();
@@ -18,7 +16,6 @@ export class RecipeCreatePageComponent implements OnInit {
   ingredients: IngredientRequest[];
 
   constructor() {
-
     this.ingredients = [{
       amount: null,
       name: '',

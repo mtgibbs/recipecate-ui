@@ -9,10 +9,16 @@ import { RecipesPageComponent } from './components/recipes-page/recipes-page.com
 import { ApiModule } from './api/api.module';
 import { AngularMaterialModule } from './shared/angular-material.module';
 import { RecipeDetailPageComponent } from './components/recipe-detail-page/recipe-detail-page.component';
-import { RecipesResolver, RecipeDetailResolver, IngredientsResolver, MealPlanDetailResolver, MealPlansResolver, MealPlanShoppingListIngredientResolver } from './resolvers';
+import {
+  RecipesResolver,
+  RecipeDetailResolver,
+  IngredientsResolver,
+  MealPlanDetailResolver,
+  MealPlansResolver,
+  MealPlanShoppingListIngredientResolver
+} from './resolvers';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RecipeCreatePageComponent } from './components/recipe-create-page/recipe-create-page.component';
 import { MealPlansPageComponent } from './components/meal-plans-page/meal-plans-page.component';
 import { MealPlanDetailPageComponent } from './components/meal-plan-detail-page/meal-plan-detail-page.component';
 import { MealPlanCreateDialogComponent } from './components/meal-plan-create-dialog/meal-plan-create-dialog.component';
@@ -20,13 +26,14 @@ import { MealPlanCreateWizardComponent } from './components/meal-plan-create-wiz
 import { INIT_API_CONFIGURATION } from './api-config';
 import { MealPlanShoppingListPageComponent } from './components/meal-plan-shopping-list-page/meal-plan-shopping-list-page.component';
 import { RecipeCreateDialogComponent } from './components/recipe-create-dialog/recipe-create-dialog.component';
+import { RecipeCreateFormComponent } from './components/recipe-create-form/recipe-create-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipesPageComponent,
     RecipeDetailPageComponent,
-    RecipeCreatePageComponent,
+    RecipeCreateFormComponent,
     MealPlansPageComponent,
     MealPlanDetailPageComponent,
     MealPlanCreateDialogComponent,
