@@ -29,7 +29,6 @@ export class MealPlansPageComponent implements OnInit {
       this.mealPlans = mps;
       this.dataSource = new MatTableDataSource(this.mealPlans);
     });
-
   }
 
   ngOnInit() {

@@ -19,6 +19,7 @@ import { MealPlanCreateDialogComponent } from './components/meal-plan-create-dia
 import { MealPlanCreateWizardComponent } from './components/meal-plan-create-wizard/meal-plan-create-wizard.component';
 import { INIT_API_CONFIGURATION } from './api-config';
 import { MealPlanShoppingListPageComponent } from './components/meal-plan-shopping-list-page/meal-plan-shopping-list-page.component';
+import { RecipeCreateDialogComponent } from './components/recipe-create-dialog/recipe-create-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MealPlanShoppingListPageComponent } from './components/meal-plan-shoppi
     MealPlanDetailPageComponent,
     MealPlanCreateDialogComponent,
     MealPlanCreateWizardComponent,
-    MealPlanShoppingListPageComponent
+    MealPlanShoppingListPageComponent,
+    RecipeCreateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { MealPlanShoppingListPageComponent } from './components/meal-plan-shoppi
     MealPlanShoppingListIngredientResolver
   ],
   entryComponents: [
-    MealPlanCreateDialogComponent
+    MealPlanCreateDialogComponent,
+    RecipeCreateDialogComponent
   ],
   bootstrap: [AppComponent]
 })
