@@ -18,8 +18,7 @@ export class RecipeCreateDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<RecipeCreateDialogData>,
     @Inject(MAT_DIALOG_DATA) data: RecipeCreateDialogData,
     private recipesService: RecipesService,
-    private snackBar: MatSnackBar
-  ) {
+    private snackBar: MatSnackBar) {
 
     this.ingredients = data.ingredients;
   }
