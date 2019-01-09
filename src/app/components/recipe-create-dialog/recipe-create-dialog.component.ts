@@ -32,13 +32,13 @@ export class RecipeCreateDialogComponent implements OnInit {
       result => {
         this.dialogRef.close({ success: true });
         this.snackBar.open('Recipe added successfully!', 'Ok', {
-          duration: 1000
+          duration: 3000
         });
       },
       err => {
         console.log(err);
         this.snackBar.open('Reciped failed to add', 'Dismiss', {
-          duration: 1500
+          duration: 3000
         });
       });
   }
