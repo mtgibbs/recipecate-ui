@@ -305,7 +305,7 @@
                 "amount": {
                     "type": "number"
                 },
-                "unit_of_measurement": {
+                "unitOfMeasurement": {
                     "type": "string"
                 }
             },
@@ -358,7 +358,7 @@
                 "amount": {
                     "type": "number"
                 },
-                "unit_of_measurement": {
+                "unitOfMeasurement": {
                     "type": "string"
                 }
             }
@@ -411,7 +411,7 @@
                         "positive": true
                     }
                 },
-                "unit_of_measurement": {
+                "unitOfMeasurement": {
                     "type": "string",
                     "x-convert": {
                         "lowercase": true
@@ -420,7 +420,7 @@
             },
             "required": [
                 "amount",
-                "unit_of_measurement"
+                "unitOfMeasurement"
             ]
         },
         "shoppingList": {
@@ -474,7 +474,7 @@
                         "positive": true
                     }
                 },
-                "unit_of_measurement": {
+                "unitOfMeasurement": {
                     "type": "string",
                     "x-convert": {
                         "lowercase": true
@@ -484,7 +484,7 @@
             "required": [
                 "name",
                 "amount",
-                "unit_of_measurement"
+                "unitOfMeasurement"
             ]
         },
         "ingredientRequests": {

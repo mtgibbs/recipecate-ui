@@ -108,7 +108,7 @@ export class MealPlanCreateWizardComponent implements OnInit {
           amount: ingredient.amount,
           id: ingredient.id,
           name: ingredient.name,
-          unit_of_measurement: ingredient.unitOfMeasurement
+          unitOfMeasurement: ingredient.unitOfMeasurement
         };
         return result;
       });
