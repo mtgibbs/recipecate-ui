@@ -9,13 +9,15 @@ import { RecipesPageComponent } from './components/recipes-page/recipes-page.com
 import { ApiModule } from './api/api.module';
 import { AngularMaterialModule } from './shared/angular-material.module';
 import { RecipeDetailPageComponent } from './components/recipe-detail-page/recipe-detail-page.component';
+
 import {
   RecipesResolver,
   RecipeDetailResolver,
   IngredientsResolver,
   MealPlanDetailResolver,
   MealPlansResolver,
-  MealPlanShoppingListIngredientResolver
+  MealPlanShoppingListIngredientResolver,
+  UnitOfMeasurementResolver
 } from './resolvers';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -57,7 +59,8 @@ import { RecipeCreateFormComponent } from './components/recipe-create-form/recip
     IngredientsResolver,
     MealPlanDetailResolver,
     MealPlansResolver,
-    MealPlanShoppingListIngredientResolver
+    MealPlanShoppingListIngredientResolver,
+    UnitOfMeasurementResolver
   ],
   entryComponents: [
     MealPlanCreateDialogComponent,
