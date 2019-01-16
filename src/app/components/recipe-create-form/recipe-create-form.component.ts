@@ -19,7 +19,7 @@ export class RecipeCreateFormComponent implements OnInit {
     this.ingredients = [{
       amount: null,
       name: '',
-      unitOfMeasurement: ''
+      unitOfMeasurement: null
     }];
   }
 
@@ -41,7 +41,7 @@ export class RecipeCreateFormComponent implements OnInit {
     this.ingredients.push({
       amount: null,
       name: '',
-      unitOfMeasurement: ''
+      unitOfMeasurement: null
     });
   }
 

@@ -3,5 +3,5 @@ export interface ShoppingListIngredient {
   id?: number;
   name?: string;
   amount: number;
-  unitOfMeasurement: string;
+  unitOfMeasurement: 'unit' | 'cup' | 'tsp' | 'tbs' | 'oz' | 'lb' | 'pint' | 'quart' | 'gallon';
 }

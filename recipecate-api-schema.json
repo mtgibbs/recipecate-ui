@@ -75,6 +75,22 @@
                 }
             }
         },
+        "/ingredients/units-of-measurement": {
+            "get": {
+                "operationId": "getIngredientsUnitsofmeasurement",
+                "tags": [
+                    "ingredients"
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/unitsOfMeasurementList"
+                        },
+                        "description": "Successful"
+                    }
+                }
+            }
+        },
         "/mealplan/{id}/shoppinglist": {
             "get": {
                 "operationId": "getMealplanIdShoppinglist",
@@ -212,7 +228,18 @@
                     "type": "string"
                 },
                 "unitOfMeasurement": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "unit",
+                        "cup",
+                        "tsp",
+                        "tbs",
+                        "oz",
+                        "lb",
+                        "pint",
+                        "quart",
+                        "gallon"
+                    ]
                 },
                 "amount": {
                     "type": "number"
@@ -293,6 +320,23 @@
                 }
             }
         },
+        "unitsOfMeasurementList": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "unit",
+                    "cup",
+                    "tsp",
+                    "tbs",
+                    "oz",
+                    "lb",
+                    "pint",
+                    "quart",
+                    "gallon"
+                ]
+            }
+        },
         "measuredIngredient": {
             "type": "object",
             "properties": {
@@ -306,12 +350,24 @@
                     "type": "number"
                 },
                 "unitOfMeasurement": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "unit",
+                        "cup",
+                        "tsp",
+                        "tbs",
+                        "oz",
+                        "lb",
+                        "pint",
+                        "quart",
+                        "gallon"
+                    ]
                 }
             },
             "required": [
                 "id",
-                "name"
+                "name",
+                "unitOfMeasurement"
             ]
         },
         "measuredIngredientsList": {
@@ -359,9 +415,23 @@
                     "type": "number"
                 },
                 "unitOfMeasurement": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "unit",
+                        "cup",
+                        "tsp",
+                        "tbs",
+                        "oz",
+                        "lb",
+                        "pint",
+                        "quart",
+                        "gallon"
+                    ]
                 }
-            }
+            },
+            "required": [
+                "unitOfMeasurement"
+            ]
         },
         "ingredientDetails": {
             "type": "array",
@@ -413,9 +483,17 @@
                 },
                 "unitOfMeasurement": {
                     "type": "string",
-                    "x-convert": {
-                        "lowercase": true
-                    }
+                    "enum": [
+                        "unit",
+                        "cup",
+                        "tsp",
+                        "tbs",
+                        "oz",
+                        "lb",
+                        "pint",
+                        "quart",
+                        "gallon"
+                    ]
                 }
             },
             "required": [
@@ -476,9 +554,17 @@
                 },
                 "unitOfMeasurement": {
                     "type": "string",
-                    "x-convert": {
-                        "lowercase": true
-                    }
+                    "enum": [
+                        "unit",
+                        "cup",
+                        "tsp",
+                        "tbs",
+                        "oz",
+                        "lb",
+                        "pint",
+                        "quart",
+                        "gallon"
+                    ]
                 }
             },
             "required": [

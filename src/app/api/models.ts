@@ -5,6 +5,7 @@ export { MealPlans } from './models/meal-plans';
 export { RecipeListItem } from './models/recipe-list-item';
 export { Items } from './models/items';
 export { RecipePageResponse } from './models/recipe-page-response';
+export { UnitsOfMeasurementList } from './models/units-of-measurement-list';
 export { MeasuredIngredient } from './models/measured-ingredient';
 export { MeasuredIngredientsList } from './models/measured-ingredients-list';
 export { MealPlanDetails } from './models/meal-plan-details';
