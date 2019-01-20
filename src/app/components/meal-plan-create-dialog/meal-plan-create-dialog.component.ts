@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RecipeListItem, AddMealPlanRequest } from 'src/app/api/models';
 import { MealplanService } from 'src/app/api/services';
 import { Router } from '@angular/router';
+import { MealPlanCreateDialogData } from 'src/app/models';
 
 @Component({
   selector: 'app-meal-plan-create-dialog',
@@ -14,8 +15,8 @@ export class MealPlanCreateDialogComponent implements OnInit {
   recipes: RecipeListItem[];
 
   constructor(
-    private dialogRef: MatDialogRef<any>,
-    @Inject(MAT_DIALOG_DATA) data: any,
+    private dialogRef: MatDialogRef<MealPlanCreateDialogData>,
+    @Inject(MAT_DIALOG_DATA) data: MealPlanCreateDialogData,
     private mealPlanService: MealplanService,
     private router: Router) {
 
