@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RecipeListItem } from 'src/app/api/models';
+import { RecipeListItem, UnitsOfMeasurementList } from 'src/app/api/models';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { IngredientsService, RecipesService } from 'src/app/api/services';
@@ -17,6 +17,8 @@ export class RecipesPageComponent implements OnInit {
   displayedColumns = ['id', 'name', 'link'];
   recipesDataSource: MatTableDataSource<RecipeListItem>;
 
+  private unitOfMeasurementList: UnitsOfMeasurementList;
+
   constructor(
     route: ActivatedRoute,
     private dialog: MatDialog,
@@ -27,6 +29,12 @@ export class RecipesPageComponent implements OnInit {
       map(data => data.recipes)
     ).subscribe(r => {
       this.recipesDataSource = new MatTableDataSource(r.items);
+    });
+
+    route.data.pipe(
+      map(data => data.unitsOfMeasurement)
+    ).subscribe((uomList: UnitsOfMeasurementList) => {
+      this.unitOfMeasurementList = uomList;
     });
 
   }
@@ -42,7 +50,8 @@ export class RecipesPageComponent implements OnInit {
 
     this.ingredientsService.getIngredients().subscribe(ingredients => {
       const data: RecipeCreateDialogData = {
-        ingredients: ingredients
+        ingredients: ingredients,
+        unitOfMeasurementList: this.unitOfMeasurementList
       };
 
       const dialogRef = this.dialog.open(RecipeCreateDialogComponent, {

@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { RecipesService } from 'src/app/api/services';
 
 import { RecipeCreateDialogData } from 'src/app/models';
-import { Ingredient, RecipeRequest } from 'src/app/api/models';
+import { Ingredient, RecipeRequest, UnitsOfMeasurementList } from 'src/app/api/models';
 
 @Component({
   selector: 'app-recipe-create-dialog',
@@ -13,6 +13,7 @@ import { Ingredient, RecipeRequest } from 'src/app/api/models';
 export class RecipeCreateDialogComponent implements OnInit {
 
   ingredients: Ingredient[];
+  unitOfMeasurementList: UnitsOfMeasurementList;
 
   constructor(
     private dialogRef: MatDialogRef<RecipeCreateDialogData>,
@@ -21,6 +22,7 @@ export class RecipeCreateDialogComponent implements OnInit {
     private snackBar: MatSnackBar) {
 
     this.ingredients = data.ingredients;
+    this.unitOfMeasurementList = data.unitOfMeasurementList;
   }
 
   ngOnInit() {

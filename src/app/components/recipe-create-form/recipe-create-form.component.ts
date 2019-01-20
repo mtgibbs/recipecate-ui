@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Ingredient, IngredientRequest, RecipeRequest } from 'src/app/api/models';
+import { Ingredient, IngredientRequest, RecipeRequest, UnitsOfMeasurementList } from 'src/app/api/models';
 
 @Component({
   selector: 'app-recipe-create-form',
@@ -9,6 +9,8 @@ import { Ingredient, IngredientRequest, RecipeRequest } from 'src/app/api/models
 export class RecipeCreateFormComponent implements OnInit {
 
   @Input() ingredientList: Ingredient[];
+  @Input() unitsOfMeasurement: UnitsOfMeasurementList;
+
   @Output() recipeSubmit = new EventEmitter<RecipeRequest>();
 
   name: string;
