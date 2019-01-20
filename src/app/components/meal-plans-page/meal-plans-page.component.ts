@@ -38,8 +38,9 @@ export class MealPlansPageComponent implements OnInit {
   addMealPlanBtnClicked() {
 
     this.recipeService.getRecipes().subscribe(rp => {
-        recipes: rp.items
+
       const data: MealPlanCreateDialogData = {
+        recipes: rp.items
       };
 
       const dialogRef = this.dialog.open(MealPlanCreateDialogComponent, {
