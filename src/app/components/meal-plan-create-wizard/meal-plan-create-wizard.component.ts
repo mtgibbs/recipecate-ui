@@ -53,8 +53,6 @@ export class MealPlanCreateWizardComponent implements OnInit {
       mealPlanName: ['', Validators.required],
       mealPlanNotes: ['']
     });
-
-    console.log(this);
   }
 
   applySearchFilterToRecipeList(filterValue: string) {
@@ -66,6 +64,7 @@ export class MealPlanCreateWizardComponent implements OnInit {
   }
 
   // #region Event Handlers
+
   recipeStepNextBtnClicked(): void {
 
     const recipeIds = this.recipeSelection.selected.map(r => r.id);
@@ -123,5 +122,6 @@ export class MealPlanCreateWizardComponent implements OnInit {
 
     this.submit.emit(req);
   }
+
   // #endregion
 }
