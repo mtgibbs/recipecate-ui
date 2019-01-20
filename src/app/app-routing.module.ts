@@ -7,7 +7,8 @@ import {
   RecipeDetailResolver,
   MealPlansResolver,
   MealPlanDetailResolver,
-  MealPlanShoppingListIngredientResolver
+  MealPlanShoppingListIngredientResolver,
+  UnitOfMeasurementResolver
 } from './resolvers';
 import { MealPlansPageComponent } from './components/meal-plans-page/meal-plans-page.component';
 import { MealPlanDetailPageComponent } from './components/meal-plan-detail-page/meal-plan-detail-page.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
     path: 'recipes',
     component: RecipesPageComponent,
     resolve: {
-      recipes: RecipesResolver
+      recipes: RecipesResolver,
+      unitsOfMeasurement: UnitOfMeasurementResolver
     }
   },
   {
@@ -32,7 +34,8 @@ const routes: Routes = [
     path: 'mealplans',
     component: MealPlansPageComponent,
     resolve: {
-      mealPlans: MealPlansResolver
+      mealPlans: MealPlansResolver,
+      unitsOfMeasurement: UnitOfMeasurementResolver
     }
   },
   {
