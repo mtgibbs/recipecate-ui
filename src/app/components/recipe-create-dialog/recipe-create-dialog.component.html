@@ -7,7 +7,8 @@
 
 <div mat-dialog-content>
   <app-recipe-create-form 
-    [ingredientList]="ingredients" 
+    [ingredientList]="ingredients"
+    [unitsOfMeasurement]="unitOfMeasurementList"
     (recipeSubmit)="handleSubmit($event)">
   </app-recipe-create-form>
 </div>
