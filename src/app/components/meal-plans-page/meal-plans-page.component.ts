@@ -5,6 +5,7 @@ import { MealPlan } from 'src/app/api/models/meal-plan';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { MealPlanCreateDialogComponent } from '../meal-plan-create-dialog/meal-plan-create-dialog.component';
 import { RecipesService } from 'src/app/api/services';
+import { MealPlanCreateDialogData } from 'src/app/models';
 
 @Component({
   selector: 'app-meal-plans-page',
@@ -37,8 +38,8 @@ export class MealPlansPageComponent implements OnInit {
   addMealPlanBtnClicked() {
 
     this.recipeService.getRecipes().subscribe(rp => {
-      const data = {
         recipes: rp.items
+      const data: MealPlanCreateDialogData = {
       };
 
       const dialogRef = this.dialog.open(MealPlanCreateDialogComponent, {
