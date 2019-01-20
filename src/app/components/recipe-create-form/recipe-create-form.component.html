@@ -28,9 +28,14 @@
           <input type="number" name="ingredient_amount_{{i}}" matInput [(ngModel)]="ingredients[i].amount" placeholder="Amount"
             required>
         </mat-form-field>
+
         <mat-form-field>
-          <input matInput name="ingredient_uom_{{i}}" [(ngModel)]="ingredients[i].unitOfMeasurement" placeholder="Unit of Measurement"
+          <mat-select placeholder="Unit of Measurement" name="ingredient_uom_{{i}}" [(ngModel)]="ingredients[i].unitOfMeasurement"
             required>
+            <mat-option *ngFor="let uom of unitsOfMeasurement" [value]="uom">
+              {{ uom }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <button type="button" mat-icon-button (click)="onRemoveIngredientBtnClick(i)">
