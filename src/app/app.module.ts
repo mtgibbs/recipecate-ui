@@ -29,6 +29,7 @@ import { INIT_API_CONFIGURATION } from './api-config';
 import { MealPlanShoppingListPageComponent } from './components/meal-plan-shopping-list-page/meal-plan-shopping-list-page.component';
 import { RecipeCreateDialogComponent } from './components/recipe-create-dialog/recipe-create-dialog.component';
 import { RecipeCreateFormComponent } from './components/recipe-create-form/recipe-create-form.component';
+import { WebStorageModule } from 'ngx-store';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { RecipeCreateFormComponent } from './components/recipe-create-form/recip
     AngularMaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    WebStorageModule
   ],
   providers: [
     INIT_API_CONFIGURATION,
