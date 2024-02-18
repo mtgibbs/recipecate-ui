@@ -1,0 +1,28 @@
+<div class="toolbar">
+  <button mat-raised-button color="primary" (click)="generateShoppingList()">
+    Generate Shopping List
+  </button>
+</div>
+
+@for (recipe of recipes; track recipe.id) {
+<mat-card class="recipe-card">
+  <mat-card-header>
+    <mat-card-title>{{ recipe.name }}</mat-card-title>
+    <button
+      mat-fab
+      color="{{ recipe.isSelected ? 'primary' : 'accent' }}"
+      (click)="recipe.isSelected = !recipe.isSelected"
+    >
+      <mat-icon>{{
+        recipe.isSelected ? "playlist_add_check" : "playlist_add"
+      }}</mat-icon>
+    </button>
+  </mat-card-header>
+  <!-- <img mat-card-image [src]="recipe.imagePath" alt="{{ recipe.name }}"> -->
+  <mat-card-content>
+    <div>
+      <p>{{ recipe.instructions }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>
+}
