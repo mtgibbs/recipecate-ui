@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../../recipecate-api-client';
 
 import { MatCardModule } from '@angular/material/card';
@@ -25,7 +25,10 @@ import { MatIconModule } from '@angular/material/icon';
 export class RecipeListComponent {
   recipes: RecipeSelectionItem[] = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
 
@@ -41,7 +44,10 @@ export class RecipeListComponent {
 
   generateShoppingList() {
     const selectedRecipes = this.recipes.filter((recipe) => recipe.isSelected);
+    const ids = selectedRecipes.map((recipe) => recipe.id);
+    console.log(ids);
     console.log('Selected recipes:', selectedRecipes);
+    this.router.navigate(['/shopping-list'], { queryParams: { ids: ids } });
   }
 }
 

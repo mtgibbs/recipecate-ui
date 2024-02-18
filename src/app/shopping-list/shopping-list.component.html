@@ -1,0 +1,6 @@
+<mat-selection-list #shoppingList>
+  @for (ingredient of ingredientList; track ingredient) {
+  <mat-list-option>{{ ingredient.name }}  <span class="quantity"> | {{ ingredient.quantity }}
+    {{ ingredient.unit }}</span></mat-list-option>
+  }
+</mat-selection-list>
