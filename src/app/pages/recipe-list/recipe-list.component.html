@@ -1,0 +1,9 @@
+<div class="toolbar">
+  <button mat-raised-button color="primary" (click)="generateShoppingList()">
+    Generate Shopping List
+  </button>
+</div>
+
+@for (recipe of recipes; track recipe.id) {
+  <app-recipe-card [recipeCardInfo]="recipe"></app-recipe-card>
+}

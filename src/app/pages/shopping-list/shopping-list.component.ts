@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Ingredient } from '../../recipecate-api-client';
+import { Ingredient } from '../../../recipecate-api-client';
 
 import { MatListModule } from '@angular/material/list';
 import { ActivatedRoute } from '@angular/router';
