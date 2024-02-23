@@ -9,11 +9,16 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { CookType } from './cookType';
 import { Ingredient } from './ingredient';
+import { RecipeCenterpieceType } from './recipeCenterpieceType';
 
 export interface Recipe { 
     name: string;
     ingredients: Array<Ingredient>;
     instructions: string;
+    cookType?: CookType;
+    totalTimeMinutes?: number;
+    recipeCenterpieceType?: RecipeCenterpieceType;
     id: string;
 }

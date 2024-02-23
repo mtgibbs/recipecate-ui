@@ -25,7 +25,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class IngredientsService {
 
-    protected basePath = 'http://localhost:3000/api/v1';
+    protected basePath = '/api/v1';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
