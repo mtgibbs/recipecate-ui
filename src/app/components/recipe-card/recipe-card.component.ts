@@ -30,5 +30,4 @@ export class RecipeCardComponent {
 
 export interface RecipeCardInfo extends Recipe {
   isSelected: boolean;
-  showIngredients: boolean;
 }

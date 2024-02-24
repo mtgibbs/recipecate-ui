@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 
 p {
     white-space: preserve;
@@ -22,14 +23,16 @@ mat-card-content {
         display: flex;
         justify-content: space-between;
     }
+}
 
-    ul {
-        &.ingredient-expanded {
-            display: block;
-        }
+mat-accordion {
+    margin-top: 1rem;
+}
 
-        &.ingredient-expanded {
-            display: none;
-        }
+mat-expansion-panel {
+
+    &:not([class*="mat-elevation-z"]) {
+        box-shadow: none;
     }
+
 }
