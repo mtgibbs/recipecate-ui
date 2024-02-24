@@ -10,12 +10,13 @@
  * Do not edit the class manually.
  */
 
-export type RecipeCenterpieceType = 'pork' | 'beef' | 'chicken' | 'vegetarian' | 'fish';
+export type RecipeCenterpieceType = 'pork' | 'beef' | 'poultry' | 'vegetarian' | 'fish' | 'dessert';
 
 export const RecipeCenterpieceType = {
     Pork: 'pork' as RecipeCenterpieceType,
     Beef: 'beef' as RecipeCenterpieceType,
-    Chicken: 'chicken' as RecipeCenterpieceType,
+    Poultry: 'poultry' as RecipeCenterpieceType,
     Vegetarian: 'vegetarian' as RecipeCenterpieceType,
-    Fish: 'fish' as RecipeCenterpieceType
+    Fish: 'fish' as RecipeCenterpieceType,
+    Dessert: 'dessert' as RecipeCenterpieceType
 };

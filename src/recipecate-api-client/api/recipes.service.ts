@@ -17,9 +17,12 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { CookType } from '../model/cookType';
 import { Ingredient } from '../model/ingredient';
 import { NotFoundError } from '../model/notFoundError';
 import { Recipe } from '../model/recipe';
+import { RecipeCenterpieceType } from '../model/recipeCenterpieceType';
+import { RecipesResponse } from '../model/recipesResponse';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -147,42 +150,6 @@ export class RecipesService {
     /**
      * 
      * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getAllRecipes(observe?: 'body', reportProgress?: boolean): Observable<Array<Recipe>>;
-    public getAllRecipes(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Recipe>>>;
-    public getAllRecipes(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Recipe>>>;
-    public getAllRecipes(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/json'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<Array<Recipe>>('get',`${this.basePath}/recipes`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
      * @param id 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -213,6 +180,70 @@ export class RecipesService {
 
         return this.httpClient.request<Recipe>('get',`${this.basePath}/recipes/${encodeURIComponent(String(id))}`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param textSearch 
+     * @param cookType 
+     * @param recipeCenterpieceType 
+     * @param page 
+     * @param pageSize 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getRecipes(textSearch?: string, cookType?: CookType, recipeCenterpieceType?: RecipeCenterpieceType, page?: number, pageSize?: number, observe?: 'body', reportProgress?: boolean): Observable<RecipesResponse>;
+    public getRecipes(textSearch?: string, cookType?: CookType, recipeCenterpieceType?: RecipeCenterpieceType, page?: number, pageSize?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RecipesResponse>>;
+    public getRecipes(textSearch?: string, cookType?: CookType, recipeCenterpieceType?: RecipeCenterpieceType, page?: number, pageSize?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RecipesResponse>>;
+    public getRecipes(textSearch?: string, cookType?: CookType, recipeCenterpieceType?: RecipeCenterpieceType, page?: number, pageSize?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+
+
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (textSearch !== undefined && textSearch !== null) {
+            queryParameters = queryParameters.set('textSearch', <any>textSearch);
+        }
+        if (cookType !== undefined && cookType !== null) {
+            queryParameters = queryParameters.set('cookType', <any>cookType);
+        }
+        if (recipeCenterpieceType !== undefined && recipeCenterpieceType !== null) {
+            queryParameters = queryParameters.set('recipeCenterpieceType', <any>recipeCenterpieceType);
+        }
+        if (page !== undefined && page !== null) {
+            queryParameters = queryParameters.set('page', <any>page);
+        }
+        if (pageSize !== undefined && pageSize !== null) {
+            queryParameters = queryParameters.set('pageSize', <any>pageSize);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<RecipesResponse>('get',`${this.basePath}/recipes`,
+            {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

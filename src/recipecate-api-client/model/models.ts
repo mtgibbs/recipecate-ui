@@ -3,3 +3,4 @@ export * from './ingredient';
 export * from './notFoundError';
 export * from './recipe';
 export * from './recipeCenterpieceType';
+export * from './recipesResponse';
