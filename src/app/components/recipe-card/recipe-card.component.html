@@ -4,7 +4,7 @@
     <button
       mat-fab
       color="{{ recipeCardInfo.isSelected ? 'primary' : 'accent' }}"
-      (click)="recipeCardInfo.isSelected = !recipeCardInfo.isSelected"
+      (click)="toggleSelection()"
     >
       <mat-icon>{{
         recipeCardInfo.isSelected ? "playlist_add_check" : "playlist_add"

@@ -9,7 +9,8 @@ export const routes: Routes = [
     {
         path: 'recipes',
         component: RecipeListComponent,
-        resolve: { recipes: recipesResolver }
+        resolve: { recipes: recipesResolver },
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange'
     },
     {
         path: 'shopping-list',

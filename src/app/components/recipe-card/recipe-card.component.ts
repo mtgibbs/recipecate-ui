@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -26,6 +26,13 @@ import { Recipe } from '../../../recipecate-api-client';
 export class RecipeCardComponent {
 
   @Input() recipeCardInfo = {} as RecipeCardInfo;
+
+  @Output() recipeSelected = new EventEmitter<RecipeCardInfo>();
+
+  toggleSelection() {
+    this.recipeCardInfo.isSelected = !this.recipeCardInfo.isSelected;
+    this.recipeSelected.emit(this.recipeCardInfo);
+  }
 }
 
 export interface RecipeCardInfo extends Recipe {

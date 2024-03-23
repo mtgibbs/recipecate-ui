@@ -4,6 +4,16 @@
   </button>
 </div>
 
+<mat-paginator
+  #paginator
+  hidePageSize="true"
+  (page)="handlePageEvent($event)"
+  [pageIndex]="pageIndex"
+  [pageSize]="pageSize"
+  [length]="totalRecords"
+>
+</mat-paginator>
+
 @for (recipe of recipes; track recipe.id) {
-  <app-recipe-card [recipeCardInfo]="recipe"></app-recipe-card>
+<app-recipe-card [recipeCardInfo]="recipe" (recipeSelected)="handleRecipeSelected($event)"></app-recipe-card>
 }
