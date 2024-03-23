@@ -44,6 +44,11 @@ export class RecipeListComponent {
         };
       });
     });
+
+    this.route.queryParams.subscribe(params => {
+      this.pageIndex = params['page'] || 0;
+      this.pageSize = params['size'] || 10;
+    });
   }
 
   generateShoppingList() {
