@@ -5,6 +5,10 @@ import { Recipe, RecipesResponse } from '../../../recipecate-api-client';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { RecipeCardComponent, RecipeCardInfo } from '../../components/recipe-card/recipe-card.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-list',
@@ -13,6 +17,10 @@ import { RecipeCardComponent, RecipeCardInfo } from '../../components/recipe-car
     RecipeCardComponent,
     MatButtonModule,
     MatPaginatorModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatIconModule,
+    FormsModule,
   ],
   templateUrl: './recipe-list.component.html',
   styleUrl: './recipe-list.component.scss'
@@ -24,6 +32,7 @@ export class RecipeListComponent {
   pageIndex: number = 0;
   pageSize: number = 10;
   totalRecords: number = 0;
+  searchString: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -48,6 +57,7 @@ export class RecipeListComponent {
     this.route.queryParams.subscribe(params => {
       this.pageIndex = params['page'] || 0;
       this.pageSize = params['size'] || 10;
+      this.searchString = params['search'] || '';
     });
   }
 
@@ -56,7 +66,13 @@ export class RecipeListComponent {
   }
 
   handlePageEvent($event: PageEvent) {
-    this.router.navigate(['/recipes'], { queryParams: { page: $event.pageIndex, size: $event.pageSize } });
+    this.router.navigate(['/recipes'], {
+      queryParams: {
+        page: $event.pageIndex,
+        size: $event.pageSize,
+        search: this.searchString === '' ? null : this.searchString
+      }
+    });
   }
 
   handleRecipeSelected(recipe: RecipeCardInfo) {
@@ -70,5 +86,12 @@ export class RecipeListComponent {
       }
     }
   }
-}
 
+  searchRecipes() {
+    this.router.navigate(['/recipes'], { queryParams: { search: this.searchString === '' ? null : this.searchString } });
+  }
+
+  get generateShoppingListDisabled() {
+    return this.selectedRecipeIds.length === 0;
+  }
+}

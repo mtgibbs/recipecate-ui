@@ -1,8 +1,30 @@
-<div class="toolbar">
-  <button mat-raised-button color="primary" (click)="generateShoppingList()">
-    Generate Shopping List
-  </button>
-</div>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button [disabled]="generateShoppingListDisabled" mat-raised-button color="primary" (click)="generateShoppingList()">
+      Generate Shopping List
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<form>
+  <mat-form-field class="search-field" flex>
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      placeholder="Search for recipes"
+      [(ngModel)]="searchString"
+      [ngModelOptions]="{ standalone: true }"
+    />
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Search"
+      (click)="searchRecipes()"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
 
 <mat-paginator
   #paginator
@@ -15,5 +37,8 @@
 </mat-paginator>
 
 @for (recipe of recipes; track recipe.id) {
-<app-recipe-card [recipeCardInfo]="recipe" (recipeSelected)="handleRecipeSelected($event)"></app-recipe-card>
+<app-recipe-card
+  [recipeCardInfo]="recipe"
+  (recipeSelected)="handleRecipeSelected($event)"
+></app-recipe-card>
 }
