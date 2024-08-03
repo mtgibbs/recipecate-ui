@@ -1,40 +1,42 @@
-<mat-toolbar>
-  <mat-toolbar-row>
-    <button [disabled]="generateShoppingListDisabled" mat-raised-button color="primary" (click)="generateShoppingList()">
-      Generate Shopping List
-    </button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<header style="position: sticky; top: 0; z-index: 5;">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <button [disabled]="generateShoppingListDisabled" mat-raised-button color="primary" (click)="generateShoppingList()">
+        {{ "GENERATE_SHOPPING_LIST" | translate }}
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-<form>
-  <mat-form-field class="search-field" flex>
-    <mat-label>Search</mat-label>
-    <input
-      matInput
-      placeholder="Search for recipes"
-      [(ngModel)]="searchString"
-      [ngModelOptions]="{ standalone: true }"
-    />
-    <button
-      matSuffix
-      mat-icon-button
-      aria-label="Search"
-      (click)="searchRecipes()"
-    >
-      <mat-icon>search</mat-icon>
-    </button>
-  </mat-form-field>
-</form>
+  <form>
+    <mat-form-field class="search-field" flex>
+      <mat-label>{{'SEARCH' | translate}}</mat-label>
+      <input
+        matInput
+        [placeholder]="'SEARCH_PLACEHOLDER' | translate"
+        [(ngModel)]="searchString"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <button
+        matSuffix
+        mat-icon-button
+        aria-label="Search"
+        (click)="searchRecipes()"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
 
-<mat-paginator
-  #paginator
-  hidePageSize="true"
-  (page)="handlePageEvent($event)"
-  [pageIndex]="pageIndex"
-  [pageSize]="pageSize"
-  [length]="totalRecords"
->
-</mat-paginator>
+  <mat-paginator
+    #paginator
+    hidePageSize="true"
+    (page)="handlePageEvent($event)"
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [length]="totalRecords"
+  >
+  </mat-paginator>
+</header>
 
 @for (recipe of recipes; track recipe.id) {
 <app-recipe-card
