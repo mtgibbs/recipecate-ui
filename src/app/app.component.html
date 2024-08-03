@@ -5,8 +5,20 @@
 
 <main class="main">
   <mat-toolbar color="primary">
-    <span>Recipecate</span>
+    <span>{{ 'RECIPECATE' | translate }}</span>
   </mat-toolbar>
 
   <router-outlet />
+
+  <footer>
+    <div class="language-selector">
+      <mat-form-field>
+        <mat-label>{{ "SELECT_LANGUAGE" | translate }}</mat-label>
+        <mat-select (selectionChange)="switchLanguage($event.value)">
+          <mat-option value="en">English</mat-option>
+          <mat-option value="fr">French</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </footer>
 </main>

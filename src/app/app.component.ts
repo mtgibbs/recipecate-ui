@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { RecipesService } from '../recipecate-api-client';
+import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Component } from '@angular/core';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @Component({
@@ -9,14 +14,35 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   standalone: true,
   imports: [
     RouterOutlet,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule,
+    TranslateModule,
+    MatOptionModule,
+    MatSelectModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [
     RecipesService,
+    TranslateService,
+    TranslateStore,
   ]
 })
 export class AppComponent {
   title = 'recipecate-ui';
+
+  constructor(private translate: TranslateService) {
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
+
+    const browserLang = this.translate.getBrowserLang();
+    if (browserLang) {
+      translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    }
+  }
+
+  switchLanguage(language: string) {
+    console.log('switchLanguage', language);
+    this.translate.use(language);
+  }
 }
