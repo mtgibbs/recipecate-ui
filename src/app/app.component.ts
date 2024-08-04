@@ -29,7 +29,9 @@ import { MatSelectModule } from '@angular/material/select';
   ]
 })
 export class AppComponent {
+
   title = 'recipecate-ui';
+  selectedLanguage = 'en';
 
   constructor(private translate: TranslateService) {
     this.translate.setDefaultLang('en');
@@ -42,7 +44,7 @@ export class AppComponent {
   }
 
   switchLanguage(language: string) {
-    console.log('switchLanguage', language);
-    this.translate.use(language);
+    this.selectedLanguage = language;
+    this.translate.use(this.selectedLanguage);
   }
 }
