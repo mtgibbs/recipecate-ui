@@ -14,7 +14,7 @@
     <div class="language-selector">
       <mat-form-field>
         <mat-label>{{ "SELECT_LANGUAGE" | translate }}</mat-label>
-        <mat-select (selectionChange)="switchLanguage($event.value)">
+        <mat-select [value]="selectedLanguage" (selectionChange)="switchLanguage($event.value)">
           <mat-option value="en">English</mat-option>
           <mat-option value="fr">French</mat-option>
         </mat-select>

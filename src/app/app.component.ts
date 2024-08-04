@@ -1,5 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { RecipesService } from '../recipecate-api-client';
 import { RouterOutlet } from '@angular/router';
@@ -23,13 +22,13 @@ import { MatSelectModule } from '@angular/material/select';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [
-    RecipesService,
-    TranslateService,
-    TranslateStore,
+    RecipesService
   ]
 })
 export class AppComponent {
+
   title = 'recipecate-ui';
+  selectedLanguage = 'en';
 
   constructor(private translate: TranslateService) {
     this.translate.setDefaultLang('en');
@@ -42,7 +41,7 @@ export class AppComponent {
   }
 
   switchLanguage(language: string) {
-    console.log('switchLanguage', language);
-    this.translate.use(language);
+    this.selectedLanguage = language;
+    this.translate.use(this.selectedLanguage);
   }
 }

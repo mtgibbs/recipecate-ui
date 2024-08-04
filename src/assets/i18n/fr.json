@@ -1,7 +1,11 @@
 {
-    "RECIPECATE": "Recipecaté",
-    "SEARCH": "Rechercher",
-    "SEARCH_PLACEHOLDER": "Rechercher des recettes",
-    "GENERATE_SHOPPING_LIST": "Générer la liste de courses",
-    "SELECT_LANGUAGE": "Sélectionner la langue"
+  "RECIPECATE": "Recipecaté",
+  "SEARCH": "Rechercher",
+  "SEARCH_PLACEHOLDER": "Rechercher des recettes",
+  "GENERATE_SHOPPING_LIST": "Générer la liste de courses",
+  "SELECT_LANGUAGE": "Sélectionner la langue",
+  "RECIPE_CARD": {
+    "INSTRUCTIONS": "Instructions",
+    "INGREDIENTS": "Ingrédients"
+  }
 }
