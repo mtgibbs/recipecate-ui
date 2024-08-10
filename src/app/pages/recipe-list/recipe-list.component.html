@@ -1,18 +1,18 @@
-<header style="position: sticky; top: 0; z-index: 5;">
+<header style="position: sticky; top: 0; z-index: 5;" *transloco="let t;">
   <mat-toolbar>
     <mat-toolbar-row>
       <button [disabled]="generateShoppingListDisabled" mat-raised-button color="primary" (click)="generateShoppingList()">
-        {{ "GENERATE_SHOPPING_LIST" | translate }}
+        {{ t("GENERATE_SHOPPING_LIST") }}
       </button>
     </mat-toolbar-row>
   </mat-toolbar>
 
   <form>
     <mat-form-field class="search-field" flex>
-      <mat-label>{{'SEARCH' | translate}}</mat-label>
+      <mat-label>{{ t('SEARCH') }}</mat-label>
       <input
         matInput
-        [placeholder]="'SEARCH_PLACEHOLDER' | translate"
+        [placeholder]="t('SEARCH_PLACEHOLDER')"
         [(ngModel)]="searchString"
         [ngModelOptions]="{ standalone: true }"
       />

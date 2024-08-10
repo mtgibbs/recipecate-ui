@@ -9,7 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-recipe-list',
@@ -22,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatInputModule,
     MatIconModule,
     FormsModule,
-    TranslateModule
+    TranslocoModule,
   ],
   templateUrl: './recipe-list.component.html',
   styleUrl: './recipe-list.component.scss'
