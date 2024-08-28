@@ -1,11 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
-import { TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { RecipesService } from '../recipecate-api-client';
 import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 
 @Component({
@@ -15,9 +15,9 @@ import { MatSelectModule } from '@angular/material/select';
     RouterOutlet,
     MatToolbarModule,
     HttpClientModule,
-    TranslateModule,
     MatOptionModule,
     MatSelectModule,
+    TranslocoModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -25,23 +25,24 @@ import { MatSelectModule } from '@angular/material/select';
     RecipesService
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   title = 'recipecate-ui';
   selectedLanguage = 'en';
 
-  constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
+  constructor(private translocoService: TranslocoService) {
 
-    const browserLang = this.translate.getBrowserLang();
-    if (browserLang) {
-      translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
-    }
+  }
+
+  ngOnInit(): void {
+    this.selectedLanguage = navigator.language.split('-')[0];
+
+    this.translocoService.setDefaultLang('en');
+    this.translocoService.setActiveLang(this.selectedLanguage);
   }
 
   switchLanguage(language: string) {
     this.selectedLanguage = language;
-    this.translate.use(this.selectedLanguage);
+    this.translocoService.setActiveLang(this.selectedLanguage);
   }
 }

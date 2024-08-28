@@ -1,4 +1,4 @@
-<mat-card class="recipe-card">
+<mat-card class="recipe-card" *transloco="let t; prefix: 'RECIPE_CARD'">
   <mat-card-header>
     <mat-card-title>{{ recipeCardInfo.name }}</mat-card-title>
     <button
@@ -15,7 +15,7 @@
   <mat-accordion multi displayMode="flat">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title> {{ "RECIPE_CARD.INSTRUCTIONS" | translate }} </mat-panel-title>
+        <mat-panel-title> {{ t("INSTRUCTIONS")  }} </mat-panel-title>
         <mat-panel-description> </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="recipe-instructions">
@@ -24,7 +24,7 @@
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>{{ "RECIPE_CARD.INGREDIENTS" | translate }}</mat-panel-title>
+        <mat-panel-title>{{ t("INGREDIENTS")  }}</mat-panel-title>
         <mat-panel-description> </mat-panel-description>
       </mat-expansion-panel-header>
       <ul>

@@ -3,9 +3,9 @@
   rel="stylesheet"
 />
 
-<main class="main">
+<main class="main" *transloco="let t;">
   <mat-toolbar color="primary">
-    <span>{{ 'RECIPECATE' | translate }}</span>
+    <span>{{ t('RECIPECATE') }}</span>
   </mat-toolbar>
 
   <router-outlet />
@@ -13,7 +13,7 @@
   <footer>
     <div class="language-selector">
       <mat-form-field>
-        <mat-label>{{ "SELECT_LANGUAGE" | translate }}</mat-label>
+        <mat-label>{{ t("SELECT_LANGUAGE") }}</mat-label>
         <mat-select [value]="selectedLanguage" (selectionChange)="switchLanguage($event.value)">
           <mat-option value="en">English</mat-option>
           <mat-option value="fr">French</mat-option>
